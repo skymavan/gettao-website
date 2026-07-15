@@ -1,0 +1,28 @@
+# GetTAO
+
+GetTAO (Get The Autonomous Operations) is a platform that runs business operations autonomously. Purpose-built agents handle the repetitive operational work across a team's existing tools, with human approval on every consequential action and a full audit trail.
+
+## Primary pages and sections
+
+- Website: https://gettao.io/
+- Capabilities: https://gettao.io/#capabilities
+- Why GetTAO: https://gettao.io/#why-gettao
+- How it works: https://gettao.io/#how-it-works
+- Use cases: https://gettao.io/#use-cases
+- Pricing: https://gettao.io/#pricing
+- Frequently asked questions: https://gettao.io/#faq
+- Request access: https://gettao.io/#access
+
+## Capabilities
+
+- Autonomous agents: run recurring operational work — triage, reconciliation, reporting, follow-ups — on a schedule, inside customer-defined guardrails.
+- Connected workflows: orchestrate work across CRM, helpdesk, databases, Slack, and email so information moves without manual handoffs.
+- Human control: configurable approval gates, confidence thresholds, escalation paths, instant rollback, and a full audit trail on every action.
+
+## The operating loop
+
+Observe -> Reason -> Approve (human) -> Act -> Learn. The loop runs continuously; consequential actions pause for a human decision.
+
+## Contact
+
+Email: hello@gettao.io
