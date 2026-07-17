@@ -11,7 +11,7 @@ export default function NotFound() {
           <span className="wordmark">GetTAO</span>
         </div>
         <p className="eyebrow justify-center">404 / Route not found</p>
-        <h1 className="font-heading text-5xl font-normal tracking-[-0.03em] sm:text-7xl">
+        <h1 className="text-5xl font-semibold tracking-[-0.02em] sm:text-7xl">
           This path is outside the loop.
         </h1>
         <p className="mx-auto mt-6 max-w-md text-lg text-muted-foreground">

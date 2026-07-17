@@ -12,7 +12,7 @@ describe("metadata routes", () => {
   it("publishes the canonical homepage in the sitemap", () => {
     expect(sitemap()).toEqual([
       expect.objectContaining({
-        url: "https://gettao.io/",
+        url: "https://gettao.ai/",
         lastModified: expect.any(Date),
         changeFrequency: "monthly",
         priority: 1,
@@ -37,6 +37,6 @@ describe("metadata routes", () => {
         "Bingbot",
       ]),
     );
-    expect(result.sitemap).toBe("https://gettao.io/sitemap.xml");
+    expect(result.sitemap).toBe("https://gettao.ai/sitemap.xml");
   });
 });

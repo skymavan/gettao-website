@@ -1,28 +1,30 @@
 import { ArrowUpRight } from "lucide-react";
 
-import { CapabilityList } from "@/components/capability-list";
 import { ClosingCta } from "@/components/closing-cta";
 import { ContactForm } from "@/components/contact-form";
 import { FaqSection } from "@/components/faq-section";
 import { HeroCopy } from "@/components/hero-copy";
-import { HeroRoute } from "@/components/hero-route";
 import { HeroVisual } from "@/components/hero-visual";
-import { PricingGrid } from "@/components/pricing-grid";
-import { PrincipleList } from "@/components/principle-list";
 import { ProcessList } from "@/components/process-list";
+import { PrincipleList } from "@/components/principle-list";
 import { SiteHeader } from "@/components/site-header";
-import { SystemRoute } from "@/components/system-route";
 import { Reveal } from "@/components/motion/reveal";
 import {
   siteConfig,
-  useCases,
-  whyGetTAO,
+  industries,
+  platformFeatures,
+  whyGettao,
+  challenges,
+  businessImpact,
+  security,
+  resources,
+  footerLinks,
 } from "@/content/site";
 import { createStructuredData } from "@/lib/structured-data";
 
 export default function Home() {
   const schema = JSON.stringify(createStructuredData()).replace(/</g, "\\u003c");
-  const accessUrl = siteConfig.accessUrl ?? "#access";
+  const accessUrl = "#contact";
 
   return (
     <>
@@ -32,58 +34,103 @@ export default function Home() {
       <SiteHeader />
 
       <main id="main-content">
+        {/* Hero */}
         <section id="top" className="hero-section" aria-labelledby="hero-title">
           <HeroVisual />
           <div className="site-shell hero-inner">
             <HeroCopy accessUrl={accessUrl} />
           </div>
-          <HeroRoute />
         </section>
 
-        <section id="capabilities" className="section-pad" aria-labelledby="capabilities-title">
+        {/* Trusted By */}
+        <section className="section-pad border-b border-border bg-muted/30" aria-label="Trusted by the financial industry">
+          <div className="site-shell text-center">
+            <Reveal>
+              <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-primary">Trusted By</p>
+              <h2 className="mb-4 text-center">Built for the Financial Industry</h2>
+              <p className="mx-auto mb-8 max-w-3xl text-muted-foreground">
+                Gettao is purpose-built to support organizations operating in highly regulated financial environments.
+                Our AI platform empowers organizations across the financial ecosystem to automate operations, improve accuracy, reduce costs, and deliver exceptional customer experiences.
+              </p>
+              <div className="flex flex-wrap justify-center gap-3">
+                {["Mortgage Lenders", "Banks", "Credit Unions", "Insurance Providers", "FinTech Companies"].map((item) => (
+                  <span key={item} className="rounded-full border border-border bg-background px-5 py-2 text-sm font-medium">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* Industries */}
+        <section id="industries" className="section-pad" aria-labelledby="industries-title">
           <div className="site-shell">
             <Reveal>
               <SectionHeading
-                eyebrow="What it does"
-                title="Capabilities that run your operations."
-                description="GetTAO is built around three capabilities that work together: autonomous agents do the work, connected workflows move it across your tools, and human control keeps every consequential decision with a person."
-                id="capabilities-title"
+                eyebrow="Industries"
+                title="AI Solutions Designed for Every Financial Institution"
+                description="Every financial organization faces unique operational challenges. Gettao delivers industry-specific AI solutions that integrate seamlessly with your existing systems while helping teams work faster and make smarter decisions."
+                id="industries-title"
               />
             </Reveal>
-            <CapabilityList accessUrl={accessUrl} />
-          </div>
-        </section>
-
-        <section id="why-gettao" className="operations-section section-pad" aria-labelledby="why-title">
-          <div className="site-shell operations-grid">
-            <div className="operations-visual" aria-label="The operating loop">
-              <p className="route-kicker">The operating loop</p>
-              <SystemRoute />
+            <div className="grid gap-8 md:grid-cols-3">
+              {industries.map((industry) => (
+                <IndustryCard key={industry.id} industry={industry} />
+              ))}
             </div>
-
-            <Reveal className="operations-copy">
-              <p className="eyebrow">Why GetTAO</p>
-              <h2 id="why-title">
-                Autonomy you can observe and reverse.
-              </h2>
-              <p className="section-lede">
-                An operator, not a copilot. GetTAO runs the repetitive work
-                inside guardrails you define, pauses for a person whenever a
-                decision matters, and records every action so nothing is ever a
-                black box.
-              </p>
-              <PrincipleList items={whyGetTAO} />
-            </Reveal>
           </div>
         </section>
 
+        {/* Platform */}
+        <section id="platform" className="section-pad bg-muted/30" aria-labelledby="platform-title">
+          <div className="site-shell">
+            <Reveal>
+              <SectionHeading
+                eyebrow="Platform"
+                title="One Enterprise AI Platform. Endless Possibilities."
+                description="Gettao brings together intelligent automation, AI agents, document intelligence, and predictive analytics into one secure platform designed specifically for financial services."
+                id="platform-title"
+              />
+            </Reveal>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {platformFeatures.map((feature) => (
+                <PlatformCard key={feature.id} feature={feature} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Challenges */}
+        <section id="challenges" className="section-pad border-y border-border" aria-labelledby="challenges-title">
+          <div className="site-shell">
+            <Reveal>
+              <SectionHeading
+                eyebrow="Challenges"
+                title="Solving the Challenges That Slow Financial Institutions Down"
+                description="Financial organizations face increasing operational complexity. Manual processes, disconnected systems, compliance requirements, and growing customer expectations create significant challenges. Gettao helps eliminate these barriers through intelligent automation and enterprise AI."
+                id="challenges-title"
+              />
+            </Reveal>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {challenges.items.map((item) => (
+                <div key={item} className="flex items-start gap-3 rounded-lg border border-border bg-background p-4">
+                  <span className="mt-1.5 size-2 shrink-0 rounded-full bg-accent" />
+                  <span className="text-sm font-medium">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works */}
         <section id="how-it-works" className="section-pad" aria-labelledby="how-title">
           <div className="site-shell">
             <Reveal>
               <SectionHeading
-                eyebrow="How it works"
-                title="A loop that keeps running, and keeps learning."
-                description="Five stages, repeated continuously. Agents observe your systems, reason about what needs doing, pause for human approval on anything consequential, act across your tools, and feed the outcome back so the next cycle is sharper."
+                eyebrow="How It Works"
+                title="From Strategy to Production"
+                description="A proven five-stage approach to delivering enterprise AI that drives real results."
                 id="how-title"
               />
             </Reveal>
@@ -91,46 +138,94 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="use-cases" className="section-pad" aria-labelledby="use-cases-title">
+        {/* Why Gettao */}
+        <section id="why-gettao" className="section-pad bg-muted/30" aria-labelledby="why-title">
           <div className="site-shell">
             <Reveal>
               <SectionHeading
-                eyebrow="Where it fits"
-                title="Built for the operations that slow teams down."
-                description="GetTAO connects to the tools each function already uses. Start with the workflow that hurts the most, then expand as trust and value grow."
-                id="use-cases-title"
+                eyebrow="Why Gettao"
+                title="Why Financial Institutions Choose Gettao"
+                description=""
+                id="why-title"
               />
             </Reveal>
-            <PrincipleList items={useCases} ariaLabel="Use cases by team" />
+            <PrincipleList items={whyGettao} />
           </div>
         </section>
 
-        <section id="pricing" className="operations-section section-pad" aria-labelledby="pricing-title">
+        {/* Business Impact */}
+        <section id="impact" className="section-pad border-y border-border" aria-labelledby="impact-title">
           <div className="site-shell">
             <Reveal>
               <SectionHeading
-                eyebrow="Pricing"
-                title="Start with one workflow. Scale when you are ready."
-                description="Transparent starting points. Every plan includes the operating loop, human approval gates, and a full audit trail. Final pricing is confirmed after we understand your workflows."
-                id="pricing-title"
+                eyebrow="Business Impact"
+                title="AI That Delivers Measurable Results"
+                description="Organizations use Gettao to improve operational performance across every stage of their business."
+                id="impact-title"
               />
             </Reveal>
-            <PricingGrid accessUrl={accessUrl} />
-            <p className="pricing-note">
-              All prices are starting points in USD. Connect your tools, define your guardrails, and expand from there.
-            </p>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {businessImpact.outcomes.map((outcome) => (
+                <div key={outcome} className="rounded-lg border border-border bg-background p-5 text-center">
+                  <p className="font-semibold">{outcome}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
+        {/* Security */}
+        <section id="security" className="section-pad" aria-labelledby="security-title">
+          <div className="site-shell">
+            <Reveal>
+              <SectionHeading
+                eyebrow="Security"
+                title="Enterprise Security Built Into Everything We Do"
+                description="Trust is the foundation of every AI solution we build. Our platform is designed to protect sensitive financial information while supporting enterprise governance and regulatory requirements."
+                id="security-title"
+              />
+            </Reveal>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {security.features.map((feature) => (
+                <div key={feature} className="flex items-start gap-3 rounded-lg border border-border bg-muted/30 p-4">
+                  <span className="mt-1.5 size-2 shrink-0 rounded-full bg-primary" />
+                  <span className="text-sm font-medium">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Resources */}
+        <section id="resources" className="section-pad bg-muted/30" aria-labelledby="resources-title">
+          <div className="site-shell">
+            <Reveal>
+              <SectionHeading
+                eyebrow="Resources"
+                title="Insights for the Future of Financial AI"
+                description="Stay ahead with expert perspectives on artificial intelligence, automation, and digital transformation in financial services."
+                id="resources-title"
+              />
+            </Reveal>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {resources.items.map((item) => (
+                <div key={item} className="rounded-lg border border-border bg-background p-5 text-center font-medium transition-colors hover:border-accent hover:text-accent">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
         <section id="faq" className="section-pad" aria-labelledby="faq-title">
           <div className="site-shell faq-grid">
             <Reveal>
               <div>
-                <p className="eyebrow">Questions, answered</p>
-                <h2 id="faq-title">How autonomous operations actually work.</h2>
+                <p className="eyebrow">FAQ</p>
+                <h2 id="faq-title">Frequently asked questions.</h2>
                 <p className="section-lede">
-                  What it does, how approvals work, what it connects to, and what
-                  happens when an agent gets it wrong — answered directly.
+                  Everything you need to know about Gettao's enterprise AI platform for financial services.
                 </p>
               </div>
             </Reveal>
@@ -138,17 +233,18 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="access" className="access-section section-pad" aria-labelledby="access-title">
+        {/* Contact / Final CTA */}
+        <section id="contact" className="access-section section-pad" aria-labelledby="access-title">
           <div className="site-shell access-grid">
             <Reveal className="access-intro">
-              <p className="eyebrow">Request access</p>
-              <h2 id="access-title">Tell us what should run autonomously.</h2>
+              <p className="eyebrow">Get Started</p>
+              <h2 id="access-title">Transform Financial Operations with Enterprise AI</h2>
               <p className="section-lede">
-                Describe the workflow consuming too much time, the system that
-                does not connect, or the manual process that should have been
-                automated years ago. We will reply with a clear assessment and a
-                recommended next step.
+                Modern financial institutions require intelligent systems that improve efficiency,
+                strengthen compliance, and enable faster decision-making. Gettao helps organizations
+                embrace AI with confidence through secure, scalable, enterprise-ready solutions.
               </p>
+              <p className="mt-6 font-semibold">Ready to see what&apos;s possible?</p>
               <a className="access-email" href={`mailto:${siteConfig.email}`}>
                 {siteConfig.email} <ArrowUpRight aria-hidden="true" />
               </a>
@@ -166,9 +262,9 @@ export default function Home() {
         <Reveal className="site-shell footer-grid">
           <div className="footer-brand-wrap">
             <a href="#top" className="footer-brand">
-              GetTAO
+              Gettao
             </a>
-            <p>Autonomous operations, with a human on the throttle.</p>
+            <p>Enterprise AI for Financial Services</p>
             <div className="footer-socials" aria-label="Social links">
               {siteConfig.socialLinks.map((link) => (
                 <a
@@ -190,21 +286,37 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <nav aria-label="Footer quick actions" className="footer-nav">
-            <p className="footer-heading">Quick actions</p>
-            <a href="#capabilities">Capabilities</a>
-            <a href="#how-it-works">How it works</a>
-            <a href="#use-cases">Use cases</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#faq">FAQ</a>
+          <nav aria-label="Solutions" className="footer-nav">
+            <p className="footer-heading">Solutions</p>
+            {footerLinks.solutions.map((link) => (
+              <a key={link.label} href={link.href}>{link.label}</a>
+            ))}
+          </nav>
+          <nav aria-label="Platform" className="footer-nav">
+            <p className="footer-heading">Platform</p>
+            {footerLinks.platform.map((link) => (
+              <a key={link.label} href={link.href}>{link.label}</a>
+            ))}
+          </nav>
+          <nav aria-label="Resources" className="footer-nav">
+            <p className="footer-heading">Resources</p>
+            {footerLinks.resources.map((link) => (
+              <a key={link.label} href={link.href}>{link.label}</a>
+            ))}
+          </nav>
+          <nav aria-label="Company" className="footer-nav">
+            <p className="footer-heading">Company</p>
+            {footerLinks.company.map((link) => (
+              <a key={link.label} href={link.href}>{link.label}</a>
+            ))}
           </nav>
           <div className="footer-meta">
             <p className="footer-heading">Get in touch</p>
             <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
-            <span>Built for operations teams everywhere</span>
+            <span>Enterprise AI for Financial Services</span>
           </div>
           <div className="footer-legal">
-            <span>© 2026 GetTAO. All rights reserved.</span>
+            <span>&copy; 2026 Gettao. All rights reserved.</span>
           </div>
         </Reveal>
       </footer>
@@ -214,6 +326,32 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: schema }}
       />
     </>
+  );
+}
+
+function IndustryCard({ industry }: { industry: typeof industries[number] }) {
+  return (
+    <article className="rounded-lg border border-border bg-background p-6">
+      <h3 className="mb-3 text-xl font-bold text-primary">{industry.title}</h3>
+      <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{industry.description}</p>
+      <ul className="space-y-2">
+        {industry.useCases.map((useCase) => (
+          <li key={useCase} className="flex items-center gap-2 text-sm">
+            <span className="size-1.5 shrink-0 rounded-full bg-accent" />
+            {useCase}
+          </li>
+        ))}
+      </ul>
+    </article>
+  );
+}
+
+function PlatformCard({ feature }: { feature: typeof platformFeatures[number] }) {
+  return (
+    <article className="rounded-lg border border-border bg-background p-6">
+      <h3 className="mb-3 text-lg font-bold text-primary">{feature.title}</h3>
+      <p className="text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
+    </article>
   );
 }
 
@@ -265,7 +403,7 @@ function SectionHeading({
     <div className="section-heading">
       <p className="eyebrow">{eyebrow}</p>
       <h2 id={id}>{title}</h2>
-      <p>{description}</p>
+      {description && <p>{description}</p>}
     </div>
   );
 }

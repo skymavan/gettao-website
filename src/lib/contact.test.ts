@@ -11,7 +11,7 @@ const validRequest: ContactFormValues = {
   email: "asha@example.com",
   company: "Northstar Labs",
   teamSize: "11-50",
-  useCase: "support-ops",
+  useCase: "mortgage",
   details: "We want an agent that triages incoming support tickets automatically.",
 };
 
@@ -50,8 +50,8 @@ describe("contact form", () => {
     const href = buildMailtoLink(validRequest);
     const decoded = decodeURIComponent(href);
 
-    expect(href).toMatch(/^mailto:hello@gettao\.io\?/);
-    expect(decoded).toContain("GetTAO access request — Support operations");
+    expect(href).toMatch(/^mailto:hello@gettao\.ai\?/);
+    expect(decoded).toContain("Gettao demo request — Mortgage lending");
     expect(decoded).toContain("Name: Asha Rao");
     expect(decoded).toContain("Company: Northstar Labs");
     expect(decoded).toContain(validRequest.details);

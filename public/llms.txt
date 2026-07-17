@@ -1,28 +1,37 @@
-# GetTAO
+# Gettao
 
-GetTAO (Get The Autonomous Operations) is a platform that runs business operations autonomously. Purpose-built agents handle the repetitive operational work across a team's existing tools, with human approval on every consequential action and a full audit trail.
+Gettao is an enterprise AI platform purpose-built for financial services — mortgage lenders, banks, and insurance providers. Our AI agents automate document processing, compliance checks, reconciliation, and customer workflows inside existing toolchains, with human-in-the-loop approval on every consequential action.
 
 ## Primary pages and sections
 
-- Website: https://gettao.io/
-- Capabilities: https://gettao.io/#capabilities
-- Why GetTAO: https://gettao.io/#why-gettao
-- How it works: https://gettao.io/#how-it-works
-- Use cases: https://gettao.io/#use-cases
-- Pricing: https://gettao.io/#pricing
-- Frequently asked questions: https://gettao.io/#faq
-- Request access: https://gettao.io/#access
+- Website: https://gettao.ai/
+- Industries: https://gettao.ai/#industries
+- Platform: https://gettao.ai/#platform
+- How it works: https://gettao.ai/#how-it-works
+- Why Gettao: https://gettao.ai/#why-gettao
+- Resources: https://gettao.ai/#resources
+- Frequently asked questions: https://gettao.ai/#faq
+- Book a demo: https://gettao.ai/#contact
 
-## Capabilities
+## Industries
 
-- Autonomous agents: run recurring operational work — triage, reconciliation, reporting, follow-ups — on a schedule, inside customer-defined guardrails.
-- Connected workflows: orchestrate work across CRM, helpdesk, databases, Slack, and email so information moves without manual handoffs.
-- Human control: configurable approval gates, confidence thresholds, escalation paths, instant rollback, and a full audit trail on every action.
+- Mortgage lending: AI agents process loan applications, extract data from documents, validate conditions, and generate closing packages — reducing cycle time from weeks to hours.
+- Banking: Automate reconciliation, report generation, compliance checks, and cross-system follow-ups with configurable approval gates.
+- Insurance: Intelligent agents handle claims intake, document collection, policy checks, and payout calculations under human supervision.
 
-## The operating loop
+## Platform features
 
-Observe -> Reason -> Approve (human) -> Act -> Learn. The loop runs continuously; consequential actions pause for a human decision.
+- AI agents: Automate document processing, data extraction, reconciliation, reporting, and follow-ups — on a schedule, inside your guardrails.
+- Connected workflows: Orchestrate work across LOS, CRM, core systems, document repositories, and email without manual handoffs.
+- Audit & compliance: Every action logged. Full audit trail, configurable approval gates, escalation paths, and instant rollback.
+- Secure by design: SOC 2, encrypted at rest and in transit, role-based access controls, and customer-managed encryption keys.
+- Integration layer: Pre-built connectors for financial services platforms (LOS, CMS, core banking, document management).
+- Analytics dashboard: Real-time visibility into agent performance, processing volumes, cycle times, and cost savings.
+
+## Delivery stages
+
+Discover -> Design -> Build -> Deploy -> Optimize. Gettao partners with each client through every stage of the AI adoption lifecycle.
 
 ## Contact
 
-Email: hello@gettao.io
+Email: hello@gettao.ai

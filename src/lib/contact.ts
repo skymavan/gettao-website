@@ -11,12 +11,11 @@ export const teamSizeValues = [
 ] as const;
 
 export const useCaseValues = [
-  "support-ops",
-  "revenue-ops",
-  "internal-ops",
-  "finance-ops",
-  "data-ops",
-  "devops",
+  "mortgage",
+  "banking",
+  "insurance",
+  "fintech",
+  "other",
   "not-sure",
 ] as const;
 
@@ -29,12 +28,11 @@ export const teamSizeLabels: Record<(typeof teamSizeValues)[number], string> = {
 };
 
 export const useCaseLabels: Record<(typeof useCaseValues)[number], string> = {
-  "support-ops": "Support operations",
-  "revenue-ops": "Revenue operations",
-  "internal-ops": "Internal operations",
-  "finance-ops": "Finance operations",
-  "data-ops": "Data operations",
-  devops: "DevOps & infrastructure",
+  mortgage: "Mortgage lending",
+  banking: "Banking operations",
+  insurance: "Insurance operations",
+  fintech: "FinTech",
+  other: "Other financial services",
   "not-sure": "Not sure yet",
 };
 
@@ -74,15 +72,15 @@ export const contactFormDefaults: ContactFormValues = {
 };
 
 export function buildMailtoLink(values: ContactFormValues): string {
-  const subject = `GetTAO access request — ${useCaseLabels[values.useCase]}`;
+  const subject = `Gettao demo request — ${useCaseLabels[values.useCase]}`;
   const body = [
     `Name: ${values.name}`,
     `Email: ${values.email}`,
     `Company: ${values.company || "Not provided"}`,
     `Team size: ${teamSizeLabels[values.teamSize]}`,
-    `Primary use case: ${useCaseLabels[values.useCase]}`,
+    `Industry: ${useCaseLabels[values.useCase]}`,
     "",
-    "What should run autonomously:",
+    "Details:",
     values.details,
   ].join("\n");
 

@@ -29,7 +29,7 @@ export function FaqSection() {
         return (
           <motion.div key={item.id} {...revealProps}>
             <AccordionItem value={item.id} className="border-border">
-              <AccordionTrigger className="rounded-none py-6 font-heading text-lg font-semibold tracking-[-0.02em] no-underline hover:no-underline sm:text-xl">
+              <AccordionTrigger className="rounded-none py-6 text-lg font-semibold tracking-[-0.02em] no-underline hover:no-underline sm:text-xl">
                 {item.question}
               </AccordionTrigger>
               <AccordionContent className="max-w-3xl pb-7 text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">

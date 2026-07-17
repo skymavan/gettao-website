@@ -49,7 +49,7 @@ export function ContactForm({ onOpenDraft }: ContactFormProps) {
       className="grid gap-5"
       noValidate
       onSubmit={handleSubmit(openDraft)}
-      aria-label="Request access"
+      aria-label="Book a demo"
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <FormField label="Name" error={errors.name?.message} required>
@@ -100,7 +100,7 @@ export function ContactForm({ onOpenDraft }: ContactFormProps) {
           </select>
         </FormField>
         <FormField
-          label="Primary use case"
+          label="Industry"
           error={errors.useCase?.message}
           required
         >
@@ -119,26 +119,25 @@ export function ContactForm({ onOpenDraft }: ContactFormProps) {
       </div>
 
       <FormField
-        label="What should run autonomously?"
+        label="Tell us about your needs"
         error={errors.details?.message}
         required
       >
         <Textarea
           rows={6}
           aria-invalid={Boolean(errors.details)}
-          placeholder="Describe the workflow that consumes too much time, who runs it, and what a good outcome looks like."
+          placeholder="Describe your institution, the challenges you're facing, and what you'd like to explore."
           {...register("details")}
         />
       </FormField>
 
       <div className="flex flex-col items-start gap-3 pt-2 sm:flex-row sm:items-center">
         <Button type="submit" size="lg" className="h-12 px-5">
-          Request access
+          Book a Demo
           <ArrowUpRight aria-hidden="true" />
         </Button>
         <p className="max-w-sm text-sm text-muted-foreground">
-          This opens your email application with the details filled in.
-          Nothing is submitted through this website.
+          We&apos;ll follow up within one business day.
         </p>
       </div>
     </form>

@@ -3,7 +3,7 @@
 import { motion, useReducedMotion, type Variants } from "motion/react";
 
 import { EASE_OUT, VIEWPORT_ONCE, fadeRise } from "@/lib/motion";
-import { pricingTiers } from "@/content/site";
+import { platformFeatures } from "@/content/site";
 
 const parent: Variants = {
   hidden: {},
@@ -12,48 +12,31 @@ const parent: Variants = {
 
 export function PricingGrid({ accessUrl }: { accessUrl?: string }) {
   const reduce = useReducedMotion();
-  const url = accessUrl ?? "#access";
+  const url = accessUrl ?? "#contact";
 
   const cards = (
     <>
-      {pricingTiers.map((tier) => (
+      {platformFeatures.map((feature) => (
         <motion.article
-          key={tier.id}
-          id={tier.id}
-          className={`pricing-card ${tier.featured ? "pricing-card-featured" : ""}`}
+          key={feature.id}
+          className="rounded-lg border border-border bg-background p-6"
           variants={fadeRise}
           transition={{ duration: 0.75, ease: EASE_OUT }}
         >
-          {tier.featured && <span className="pricing-card-flag">Most popular</span>}
-          <div className="pricing-tier-index">{tier.index}</div>
-          <h3>{tier.name}</h3>
-          <p className="pricing-price">
-            {tier.price}
-            {tier.cadence && <small>{tier.cadence}</small>}
-          </p>
-          <p className="text-sm text-muted-foreground">{tier.description}</p>
-          <ul>
-            {tier.features.map((feature) => (
-              <li key={feature}>
-                <span aria-hidden="true" /> {feature}
-              </li>
-            ))}
-          </ul>
-          <a href={url} className="text-link">
-            {tier.ctaLabel}
-          </a>
+          <h3 className="mb-3 text-lg font-bold text-primary">{feature.title}</h3>
+          <p className="text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
         </motion.article>
       ))}
     </>
   );
 
   if (reduce) {
-    return <div className="pricing-grid">{cards}</div>;
+    return <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{cards}</div>;
   }
 
   return (
     <motion.div
-      className="pricing-grid"
+      className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
       variants={parent}
       initial="hidden"
       whileInView="visible"

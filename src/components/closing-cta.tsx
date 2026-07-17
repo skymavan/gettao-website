@@ -6,7 +6,7 @@ import { motion, useReducedMotion, type Variants } from "motion/react";
 import { EASE_OUT, VIEWPORT_ONCE } from "@/lib/motion";
 
 const STATEMENT =
-  "Put your operations on autopilot. Keep your hand on the throttle.".split(
+  "Transform financial operations with enterprise AI.".split(
     " ",
   );
 
@@ -22,15 +22,15 @@ const word: Variants = {
 
 export function ClosingCta({ accessUrl }: { accessUrl?: string }) {
   const reduce = useReducedMotion();
-  const url = accessUrl ?? "#access";
+  const url = accessUrl ?? "#contact";
 
   if (reduce) {
     return (
       <section className="closing-section" aria-label="Closing call to action">
         <div className="site-shell closing-inner">
-          <p>Put your operations on autopilot. Keep your hand on the throttle.</p>
+          <p>Transform financial operations with enterprise AI.</p>
           <a href={url} className="closing-link">
-            Request access <ArrowUpRight aria-hidden="true" />
+            Book a Demo <ArrowUpRight aria-hidden="true" />
           </a>
         </div>
       </section>
@@ -48,8 +48,8 @@ export function ClosingCta({ accessUrl }: { accessUrl?: string }) {
         >
           <span className="sr-only">{STATEMENT.join(" ")}</span>
           <span aria-hidden="true">
-            {STATEMENT.map((w) => (
-              <span key={w} className="closing-word-wrap">
+            {STATEMENT.map((w, i) => (
+              <span key={`${w}-${i}`} className="closing-word-wrap">
                 <motion.span className="closing-word" variants={word}>
                   {w}
                 </motion.span>
@@ -65,7 +65,7 @@ export function ClosingCta({ accessUrl }: { accessUrl?: string }) {
           viewport={VIEWPORT_ONCE}
           transition={{ duration: 0.85, ease: EASE_OUT, delay: 0.6 }}
         >
-          Request access <ArrowUpRight aria-hidden="true" />
+          Book a Demo <ArrowUpRight aria-hidden="true" />
         </motion.a>
       </div>
     </section>

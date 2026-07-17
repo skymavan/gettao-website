@@ -1,4 +1,4 @@
-import { faqItems, pricingTiers, siteConfig } from "@/content/site";
+import { faqItems, siteConfig } from "@/content/site";
 
 export function createStructuredData() {
   const organizationId = `${siteConfig.canonicalUrl}#organization`;
@@ -12,11 +12,10 @@ export function createStructuredData() {
         "@type": "Organization",
         "@id": organizationId,
         name: siteConfig.name,
-        alternateName: siteConfig.nameLong,
         url: siteConfig.canonicalUrl,
         email: siteConfig.email,
         description:
-          "GetTAO — Get The Autonomous Operations — is a platform that runs business operations autonomously, with human approval on every consequential action.",
+          "Gettao is an enterprise AI platform helping mortgage lenders, banks, and insurance providers automate operations, improve decision-making, and accelerate digital transformation through secure, scalable artificial intelligence.",
       },
       {
         "@type": "WebSite",
@@ -31,19 +30,11 @@ export function createStructuredData() {
         "@id": applicationId,
         name: siteConfig.name,
         applicationCategory: "BusinessApplication",
-        applicationSubCategory: "AI Operations Platform",
+        applicationSubCategory: "AI Platform for Financial Services",
         operatingSystem: "Web",
         url: siteConfig.canonicalUrl,
         description:
-          "GetTAO is an autonomous operations platform. Purpose-built agents run recurring operational work across your existing tools, with configurable approval gates, confidence thresholds, and a full audit trail on every action.",
-        offers: pricingTiers
-          .filter((tier) => tier.price !== "Custom")
-          .map((tier) => ({
-            "@type": "Offer",
-            price: tier.price.replace(/[^0-9.]/g, ""),
-            priceCurrency: "USD",
-            description: tier.description,
-          })),
+          "Gettao brings together intelligent automation, AI agents, document intelligence, and predictive analytics into one secure platform designed specifically for financial services.",
         publisher: { "@id": organizationId },
       },
       {

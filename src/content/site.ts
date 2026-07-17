@@ -1,41 +1,33 @@
 export type SiteConfig = {
   name: string;
-  nameLong: string;
   tagline: string;
   canonicalUrl: string;
   email: string;
-  accessUrl?: string;
   socialLinks: ReadonlyArray<{ label: string; href: string; icon: "linkedin" | "x" | "github" }>;
 };
 
-export type CapabilityId = "autonomous-agents" | "connected-workflows" | "human-control";
-
-export type Capability = {
-  id: CapabilityId;
-  index: string;
+export type Industry = {
+  id: string;
   title: string;
-  shortTitle: string;
   description: string;
   useCases: ReadonlyArray<string>;
 };
 
-export type LoopStage = {
+export type PlatformFeature = {
+  id: string;
+  title: string;
+  description: string;
+};
+
+export type Stage = {
   index: string;
   title: string;
   description: string;
-  human?: boolean;
 };
 
-export type PricingTier = {
-  id: string;
-  index: string;
-  name: string;
-  price: string;
-  cadence: string;
+export type Principle = {
+  title: string;
   description: string;
-  features: ReadonlyArray<string>;
-  featured?: boolean;
-  ctaLabel: string;
 };
 
 export type FaqItem = {
@@ -44,289 +36,365 @@ export type FaqItem = {
   answer: string;
 };
 
+export type IndustryNavItem = {
+  id: string;
+  label: string;
+  description: string;
+  href: string;
+  icon: string;
+};
+
 export const siteConfig: SiteConfig = {
-  name: "GetTAO",
-  nameLong: "Get The Autonomous Operations",
-  tagline: "Autonomous operations, with a human on the throttle.",
-  canonicalUrl: "https://gettao.io/",
-  email: "hello@gettao.io",
-  accessUrl: "#access",
+  name: "Gettao",
+  tagline: "Enterprise AI for Financial Services",
+  canonicalUrl: "https://gettao.ai/",
+  email: "hello@gettao.ai",
   socialLinks: [
-    {
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/company/gettao",
-      icon: "linkedin",
-    },
-    {
-      label: "X",
-      href: "https://x.com/gettao",
-      icon: "x",
-    },
-    {
-      label: "GitHub",
-      href: "https://github.com/gettao",
-      icon: "github",
-    },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/gettao", icon: "linkedin" },
+    { label: "X", href: "https://x.com/gettao", icon: "x" },
+    { label: "GitHub", href: "https://github.com/gettao", icon: "github" },
   ],
 };
 
+export const industryNavItems: ReadonlyArray<IndustryNavItem> = [
+  {
+    id: "mortgage",
+    label: "Mortgage AI",
+    description: "Accelerate loan origination and automate underwriting.",
+    href: "/solutions/mortgage",
+    icon: "landmark",
+  },
+  {
+    id: "banking",
+    label: "Banking AI",
+    description: "Transform banking operations with intelligent automation.",
+    href: "/solutions/banking",
+    icon: "building",
+  },
+  {
+    id: "insurance",
+    label: "Insurance AI",
+    description: "Automate claims, underwriting, and customer service.",
+    href: "/solutions/insurance",
+    icon: "shield",
+  },
+];
+
 export const navigation = [
-  { label: "Capabilities", href: "#capabilities" },
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Use cases", href: "#use-cases" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Industries", href: "#industries", children: "industries" },
+  { label: "Platform", href: "/platform" },
+  { label: "How It Works", href: "#how-it-works" },
+  { label: "Why Gettao", href: "#why-gettao" },
+  { label: "Resources", href: "#resources" },
   { label: "FAQ", href: "#faq" },
 ] as const;
 
-export const capabilityIds = [
-  "autonomous-agents",
-  "connected-workflows",
-  "human-control",
-] as const;
+export const hero = {
+  badge: "Enterprise AI for Financial Services",
+  title: "AI That Powers the Future of Financial Services",
+  description:
+    "Accelerate lending, modernize banking, and transform insurance operations with secure, enterprise-grade AI solutions designed to automate complex workflows, improve decision-making, and deliver measurable business outcomes.",
+  primaryCta: "Book a Demo",
+  secondaryCta: "Talk to an AI Expert",
+};
 
-export const capabilities: ReadonlyArray<Capability> = [
+export const trustedBy = {
+  title: "Built for the Financial Industry",
+  description:
+    "Gettao is purpose-built to support organizations operating in highly regulated financial environments. Our AI platform empowers organizations across the financial ecosystem to automate operations, improve accuracy, reduce costs, and deliver exceptional customer experiences.",
+  industries: [
+    "Mortgage Lenders",
+    "Banks",
+    "Credit Unions",
+    "Insurance Providers",
+    "FinTech Companies",
+  ],
+};
+
+export const industries: ReadonlyArray<Industry> = [
   {
-    id: "autonomous-agents",
-    index: "01",
-    title: "Autonomous agents that run your operations",
-    shortTitle: "Autonomous Agents",
+    id: "mortgage",
+    title: "Mortgage",
     description:
-      "Purpose-built agents handle the recurring operational work that consumes your team's day — triaging requests, reconciling data, drafting reports, chasing follow-ups. They run on a schedule, inside guardrails you define, and pause for a person whenever a decision matters. Not a copilot you drive, an operator that works while you focus elsewhere.",
+      "Transform the mortgage lifecycle with intelligent automation. From document collection to underwriting, Gettao helps lenders reduce processing time, improve accuracy, and provide borrowers with a faster, more transparent experience.",
     useCases: [
-      "Triage and route incoming support and internal requests",
-      "Reconcile records across CRM, billing, and databases",
-      "Draft and dispatch recurring operational reports",
-      "Monitor systems and surface anomalies before they escalate",
-      "Chase approvals, follow-ups, and outstanding actions",
+      "Loan Origination",
+      "Document Verification",
+      "Income Analysis",
+      "Underwriting Assistance",
+      "Compliance Checks",
+      "Customer Communication",
     ],
   },
   {
-    id: "connected-workflows",
-    index: "02",
-    title: "Workflows that connect the systems you already use",
-    shortTitle: "Connected Workflows",
+    id: "banking",
+    title: "Banking",
     description:
-      "Operations live in the handoffs between your tools. GetTAO orchestrates work across your CRM, helpdesk, databases, Slack, and email so information moves without manual data entry. Every step is observable, and every handoff is logged — no work lost between systems, no one copy-pasting between tabs.",
+      "Modern banking requires intelligent operations. Gettao enables banks to automate repetitive processes, improve fraud detection, streamline compliance, and deliver exceptional digital customer experiences.",
     useCases: [
-      "Sync and enrich records across CRM, ERP, and billing",
-      "Route multi-step approvals to the right person automatically",
-      "Triage Slack and email requests into structured actions",
-      "Trigger downstream updates across your stack from one event",
-      "Bridge legacy systems with modern APIs",
+      "Fraud Detection",
+      "Customer Support",
+      "Regulatory Compliance",
+      "Intelligent Workflows",
+      "Risk Analysis",
+      "Internal Knowledge Search",
     ],
   },
   {
-    id: "human-control",
-    index: "03",
-    title: "Human control built into every consequential action",
-    shortTitle: "Human Control",
+    id: "insurance",
+    title: "Insurance",
     description:
-      "Autonomy without control is a liability. GetTAO treats human oversight as a first-class stage, not an afterthought. Confidence thresholds decide what runs on its own and what pauses for review. Approval gates, escalation paths, and instant rollback mean nothing lands unchecked — and nothing is irreversible.",
+      "Improve efficiency across the insurance lifecycle. Automate claims processing, streamline underwriting, accelerate policy servicing, and empower teams with AI-driven insights.",
     useCases: [
-      "Configurable approval gates on any consequential action",
-      "Confidence thresholds that auto-run safe steps and pause risky ones",
-      "Escalation paths that reach the right human, fast",
-      "Instant rollback and full audit trail on every action",
-      "Role-based control over what agents can touch",
+      "Claims Automation",
+      "Policy Review",
+      "Underwriting Assistance",
+      "Risk Assessment",
+      "Customer Service",
+      "Document Intelligence",
     ],
   },
 ];
 
-export const whyGetTAO = [
+export const platformFeatures: ReadonlyArray<PlatformFeature> = [
   {
-    title: "Runs autonomously, guided by humans",
+    id: "document-intelligence",
+    title: "AI Document Intelligence",
     description:
-      "GetTAO is an operator, not a copilot. Agents do the work on a schedule; a human stays on the throttle for anything that matters.",
+      "Automatically classify, extract, validate, and organize financial documents with enterprise-grade accuracy. Reduce manual review while accelerating critical business processes.",
   },
   {
-    title: "Every action is observable",
+    id: "ai-agents",
+    title: "AI Agents",
     description:
-      "No black boxes. Every decision, input, and output is logged in a clear audit trail you can inspect at any time.",
+      "Deploy intelligent assistants that support customers, employees, and operations 24/7. From answering customer questions to assisting internal teams, AI Agents improve efficiency while maintaining a human-quality experience.",
   },
   {
-    title: "Nothing is irreversible",
+    id: "workflow-automation",
+    title: "Workflow Automation",
     description:
-      "Approved actions can be rolled back. Mistakes are recoverable because the system records what it did and why.",
+      "Replace repetitive manual processes with intelligent workflows that reduce delays, eliminate bottlenecks, and increase productivity.",
   },
   {
-    title: "Connects to what you already use",
+    id: "decision-intelligence",
+    title: "Decision Intelligence",
     description:
-      "No rip-and-replace. GetTAO works across your existing CRM, helpdesk, databases, Slack, and email from day one.",
+      "Transform data into actionable insights that help leaders make faster, more confident decisions.",
   },
   {
-    title: "Guardrails by default",
+    id: "predictive-intelligence",
+    title: "Predictive Intelligence",
     description:
-      "Confidence thresholds, approval gates, and escalation are built in — not bolted on after something goes wrong.",
+      "Identify trends, forecast outcomes, detect anomalies, and uncover opportunities before they impact your business.",
   },
   {
-    title: "Built to evolve",
+    id: "enterprise-search",
+    title: "Enterprise Search",
     description:
-      "Swap models, add workflows, and scale across teams without rebuilding. The platform adapts as your operations grow.",
+      "Give employees instant access to trusted information across policies, documents, systems, and internal knowledge using Retrieval-Augmented Generation (RAG).",
   },
-] as const;
+];
 
-export const useCases = [
-  {
-    title: "Support Operations",
-    description:
-      "Triage tickets, draft replies, escalate exceptions, and keep response times low while a human approves sensitive responses.",
-  },
-  {
-    title: "Revenue Operations",
-    description:
-      "Enrich and route leads, sync CRM data, trigger follow-ups, and surface pipeline risks before the quarter slips.",
-  },
-  {
-    title: "Internal Operations",
-    description:
-      "Handle internal requests, approve access changes, reconcile systems, and keep the back office running without bottlenecks.",
-  },
-  {
-    title: "Finance Operations",
-    description:
-      "Reconcile invoices, flag anomalies, route approvals, and generate reports with a clear, auditable trail.",
-  },
-  {
-    title: "Data Operations",
-    description:
-      "Monitor pipelines, validate records, surface anomalies, and trigger remediation when something looks wrong.",
-  },
-  {
-    title: "DevOps & Infrastructure",
-    description:
-      "Watch systems, triage alerts, draft incident summaries, and run approved remediation so on-call isn't the bottleneck.",
-  },
-] as const;
+export const challenges = {
+  title: "Solving the Challenges That Slow Financial Institutions Down",
+  description:
+    "Financial organizations face increasing operational complexity. Manual processes, disconnected systems, compliance requirements, and growing customer expectations create significant challenges. Gettao helps eliminate these barriers through intelligent automation and enterprise AI.",
+  items: [
+    "Slow loan approvals",
+    "Manual document processing",
+    "High operational costs",
+    "Fraud detection delays",
+    "Compliance complexity",
+    "Customer support bottlenecks",
+    "Inefficient claims processing",
+    "Disconnected workflows",
+    "Limited operational visibility",
+  ],
+};
 
-export const howItWorks: ReadonlyArray<LoopStage> = [
+export const howItWorks: ReadonlyArray<Stage> = [
   {
     index: "01",
-    title: "Observe",
+    title: "Discover",
     description:
-      "Agents monitor your systems, data, and incoming requests continuously, watching for the events and states you care about.",
+      "We begin by understanding your business, workflows, challenges, and strategic objectives.",
   },
   {
     index: "02",
-    title: "Reason",
+    title: "Design",
     description:
-      "They evaluate what needs doing against the rules and outcomes you define, and decide whether an action is safe to run.",
+      "Our experts design an AI solution aligned with your operational requirements and business goals.",
   },
   {
     index: "03",
-    title: "Approve",
-    human: true,
+    title: "Build",
     description:
-      "Consequential actions pause for a human decision. Confidence thresholds decide what runs on its own and what waits for you.",
+      "We develop secure, scalable AI applications that integrate with your existing technology ecosystem.",
   },
   {
     index: "04",
-    title: "Act",
+    title: "Deploy",
     description:
-      "Approved work executes across your connected tools — CRM, helpdesk, databases, Slack — with every step logged.",
+      "Deploy enterprise-ready AI with minimal disruption to your operations.",
   },
   {
     index: "05",
-    title: "Learn",
+    title: "Optimize",
     description:
-      "Outcomes feed back into the loop so the system improves over time, and your guardrails tighten as confidence grows.",
+      "Continuously monitor, improve, and scale your AI solutions as your organization grows.",
   },
 ];
 
-export const pricingTiers: ReadonlyArray<PricingTier> = [
+export const whyGettao: ReadonlyArray<Principle> = [
   {
-    id: "starter",
-    index: "01",
-    name: "Starter",
-    price: "$490",
-    cadence: "/mo",
-    description: "For a single team automating one core operational workflow.",
-    features: [
-      "Up to 3 autonomous agents",
-      "1 connected workflow",
-      "Human approval gates",
-      "30-day audit history",
-      "Email support",
-    ],
-    ctaLabel: "Request access",
+    title: "Built for Financial Services",
+    description:
+      "Our solutions are designed specifically for the operational and regulatory needs of mortgage companies, banks, and insurance providers.",
   },
   {
-    id: "scale",
-    index: "02",
-    name: "Scale",
-    price: "$1,490",
-    cadence: "/mo",
-    description: "For operations teams running several workflows in parallel.",
-    features: [
-      "Up to 15 autonomous agents",
-      "Unlimited connected workflows",
-      "Configurable confidence thresholds",
-      "90-day audit history",
-      "Role-based access control",
-      "Priority support",
-    ],
-    featured: true,
-    ctaLabel: "Request access",
+    title: "Enterprise Security",
+    description:
+      "Protect sensitive financial data through enterprise-grade security architecture, encryption, and access controls.",
   },
   {
-    id: "enterprise",
-    index: "03",
-    name: "Enterprise",
-    price: "Custom",
-    cadence: "",
-    description: "For organizations with security, compliance, and scale needs.",
-    features: [
-      "Unlimited agents and workflows",
-      "SSO and SCIM provisioning",
-      "Full audit export and SIEM integration",
-      "Custom data residency",
-      "Dedicated success engineer",
-      "99.9% uptime SLA",
-    ],
-    ctaLabel: "Talk to us",
+    title: "Responsible AI",
+    description:
+      "Build trust with transparent AI systems that support explainable and accountable decision-making.",
+  },
+  {
+    title: "Seamless Integration",
+    description:
+      "Integrate effortlessly with your existing applications, cloud infrastructure, and business systems.",
+  },
+  {
+    title: "Faster Time to Value",
+    description:
+      "Deliver measurable business impact quickly through streamlined implementation and rapid deployment.",
+  },
+  {
+    title: "Long-Term Partnership",
+    description:
+      "From strategy and implementation to optimization and growth, we work as an extension of your team.",
   },
 ];
+
+export const businessImpact = {
+  title: "AI That Delivers Measurable Results",
+  description:
+    "Organizations use Gettao to improve operational performance across every stage of their business.",
+  outcomes: [
+    "Increase Productivity",
+    "Reduce Operational Costs",
+    "Accelerate Processing Times",
+    "Improve Decision Accuracy",
+    "Enhance Customer Experiences",
+    "Strengthen Compliance",
+    "Scale Operations Efficiently",
+    "Empower Employees",
+  ],
+};
+
+export const security = {
+  title: "Enterprise Security Built Into Everything We Do",
+  description:
+    "Trust is the foundation of every AI solution we build. Our platform is designed to protect sensitive financial information while supporting enterprise governance and regulatory requirements.",
+  features: [
+    "Enterprise Encryption",
+    "Role-Based Access Control",
+    "Secure APIs",
+    "Audit Logging",
+    "Data Privacy",
+    "Compliance-Ready Architecture",
+    "Responsible AI Governance",
+    "Continuous Monitoring",
+  ],
+};
+
+export const resources = {
+  title: "Insights for the Future of Financial AI",
+  description:
+    "Stay ahead with expert perspectives on artificial intelligence, automation, and digital transformation in financial services.",
+  items: [
+    "Industry Insights",
+    "Whitepapers",
+    "AI Implementation Guides",
+    "Technology Blogs",
+    "Product Updates",
+    "Case Studies",
+    "Webinars",
+    "Best Practices",
+  ],
+};
 
 export const faqItems: ReadonlyArray<FaqItem> = [
   {
-    id: "what-is-autonomous",
-    question: "What does GetTAO actually do?",
+    id: "industries-served",
+    question: "What industries does Gettao serve?",
     answer:
-      "GetTAO runs business operations autonomously. You connect the systems you already use and define the outcomes and rules you care about; autonomous agents then handle the recurring operational work — triage, reconciliation, reporting, follow-ups — while a human approves every consequential action before it lands.",
+      "We specialize in AI solutions for mortgage lenders, banks, credit unions, insurance providers, and financial technology companies.",
   },
   {
-    id: "how-approvals-work",
-    question: "How do human approvals work?",
+    id: "system-integration",
+    question: "Can Gettao integrate with our existing systems?",
     answer:
-      "Every workflow has configurable approval gates. You set confidence thresholds that decide which steps an agent can run on its own and which must pause for a person. When a step needs you, GetTAO surfaces the context and waits — and any approved action can be rolled back, so nothing is irreversible.",
-  },
-  {
-    id: "what-connects",
-    question: "What systems does GetTAO connect to?",
-    answer:
-      "GetTAO works across the tools operations teams already use: CRMs, helpdesks, databases, Slack, email, and internal APIs. If a system has an API, GetTAO can usually orchestrate across it. Discovery maps every integration point, including authentication, data formats, and rate limits.",
+      "Yes. Our solutions integrate seamlessly with enterprise platforms, cloud services, CRMs, document management systems, and APIs.",
   },
   {
     id: "data-security",
-    question: "How is our data secured?",
+    question: "Is our data secure?",
     answer:
-      "Security is designed in from the start. Data is encrypted in transit and at rest, access is role-based, and every action is written to a tamper-evident audit trail. We never train public models on your data, and Enterprise plans support custom data residency and deployment in your own environment.",
+      "Absolutely. Security is embedded into every layer of our platform using enterprise best practices including encryption, role-based access control, audit logging, and compliance-ready architecture.",
   },
   {
-    id: "which-models",
-    question: "Which AI models power the agents?",
+    id: "custom-solutions",
+    question: "Do you build custom AI solutions?",
     answer:
-      "Agents are model-agnostic. We select models based on the task and work with leading providers alongside open-source options, so you can swap providers without rebuilding your workflows as the landscape evolves.",
+      "Yes. Every implementation is tailored to your organization's workflows, objectives, and technology environment.",
   },
   {
-    id: "start-small",
-    question: "Can we start with a single workflow?",
+    id: "implementation-timeline",
+    question: "How long does implementation take?",
     answer:
-      "Yes. Most teams start with one painful operational workflow — triage, reconciliation, or reporting — and expand from there. The Starter plan is built for exactly this, and you can add agents and workflows as trust and value grow.",
-  },
-  {
-    id: "when-agent-wrong",
-    question: "What happens when an agent gets it wrong?",
-    answer:
-      "Consequential actions require approval, so a person catches problems before they land. For anything that slips through, GetTAO records exactly what happened and why, and the action can be rolled back. Every mistake is recoverable and inspectable, not hidden.",
+      "Implementation timelines depend on project scope. Our phased deployment approach enables organizations to realize value quickly while minimizing operational disruption.",
   },
 ];
+
+export const finalCta = {
+  title: "Transform Financial Operations with Enterprise AI",
+  description:
+    "Modern financial institutions require intelligent systems that improve efficiency, strengthen compliance, and enable faster decision-making. Gettao helps organizations embrace AI with confidence through secure, scalable, enterprise-ready solutions.",
+  tagline: "Ready to see what's possible?",
+  primaryCta: "Book a Demo",
+  secondaryCta: "Talk to an AI Expert",
+};
+
+export const footerLinks = {
+  solutions: [
+    { label: "Mortgage", href: "#mortgage" },
+    { label: "Banking", href: "#banking" },
+    { label: "Insurance", href: "#insurance" },
+  ],
+  platform: [
+    { label: "AI Platform", href: "#platform" },
+    { label: "AI Agents", href: "#ai-agents" },
+    { label: "Document Intelligence", href: "#document-intelligence" },
+    { label: "Workflow Automation", href: "#workflow-automation" },
+    { label: "Predictive Intelligence", href: "#predictive-intelligence" },
+    { label: "Enterprise Search", href: "#enterprise-search" },
+  ],
+  resources: [
+    { label: "Blog", href: "#" },
+    { label: "Case Studies", href: "#" },
+    { label: "Whitepapers", href: "#" },
+    { label: "Documentation", href: "#" },
+    { label: "FAQ", href: "#faq" },
+  ],
+  company: [
+    { label: "About", href: "#" },
+    { label: "Careers", href: "#" },
+    { label: "Partners", href: "#" },
+    { label: "Contact", href: "#contact" },
+    { label: "Privacy Policy", href: "#" },
+    { label: "Terms of Service", href: "#" },
+  ],
+};

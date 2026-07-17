@@ -10,7 +10,7 @@ describe("FaqSection", () => {
     render(<FaqSection />);
 
     const question = screen.getByRole("button", {
-      name: "How do human approvals work?",
+      name: "What industries does Gettao serve?",
     });
     expect(question).toHaveAttribute("aria-expanded", "false");
 
@@ -18,7 +18,7 @@ describe("FaqSection", () => {
 
     expect(question).toHaveAttribute("aria-expanded", "true");
     expect(
-      screen.getByText(/configurable approval gates/i),
+      screen.getByText(/mortgage lenders|banks|insurance providers/i),
     ).toBeVisible();
   });
 });

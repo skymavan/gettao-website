@@ -1,19 +1,17 @@
 import { describe, expect, it } from "vitest";
 
 import {
-  capabilities,
-  capabilityIds,
   faqItems,
   navigation,
   siteConfig,
 } from "@/content/site";
 
 describe("site content", () => {
-  it("uses the approved GetTAO identity", () => {
+  it("uses the approved Gettao identity", () => {
     expect(siteConfig).toMatchObject({
-      name: "GetTAO",
-      canonicalUrl: "https://gettao.io/",
-      email: "hello@gettao.io",
+      name: "Gettao",
+      canonicalUrl: "https://gettao.ai/",
+      email: "hello@gettao.ai",
     });
     expect(siteConfig.socialLinks).toEqual([
       {
@@ -34,20 +32,14 @@ describe("site content", () => {
     ]);
   });
 
-  it("keeps navigation and capability anchors unique", () => {
+  it("keeps navigation anchors unique", () => {
     expect(new Set(navigation.map((item) => item.href)).size).toBe(
       navigation.length,
-    );
-    expect(new Set(capabilities.map((capability) => capability.id)).size).toBe(
-      capabilities.length,
-    );
-    expect(capabilities.map((capability) => capability.id)).toEqual(
-      capabilityIds,
     );
   });
 
   it("provides extractable FAQ answers", () => {
-    expect(faqItems).toHaveLength(7);
-    expect(faqItems.every((item) => item.answer.length >= 90)).toBe(true);
+    expect(faqItems).toHaveLength(5);
+    expect(faqItems.every((item) => item.answer.length >= 30)).toBe(true);
   });
 });

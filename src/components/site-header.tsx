@@ -2,9 +2,11 @@
 
 import { Menu } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { IndustriesNavItem } from "@/components/industries-dropdown";
 import {
   Sheet,
   SheetContent,
@@ -15,7 +17,9 @@ import {
 } from "@/components/ui/sheet";
 import { navigation, siteConfig } from "@/content/site";
 
-const SECTION_IDS = navigation.map((item) => item.href.slice(1));
+const SECTION_IDS = navigation
+  .filter((item) => item.href.startsWith("#"))
+  .map((item) => item.href.slice(1));
 
 export function SiteHeader() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -57,19 +61,27 @@ export function SiteHeader() {
       animate={headerAnimate}
       transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
     >
-      <div className="site-shell header-shell liquid-glass flex h-[4.5rem] items-center justify-between gap-4 rounded-full px-4 sm:px-6">
-        <a
-          href="#top"
+      <div className="site-shell header-shell flex h-[4.5rem] items-center justify-between gap-4 rounded-full px-4 sm:px-6">
+        <Link
+          href="/"
           className="flex items-center gap-2 rounded-lg focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
-          aria-label="GetTAO home"
+          aria-label="Gettao Home"
+          onClick={() => {
+            if (window.location.pathname === "/") {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
         >
           <span className="wordmark">GetTAO</span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
           {navigation.map((item) => {
-            const itemSection = item.href.slice(1);
-            const isActive = activeId === itemSection;
+            if (item.children === "industries") {
+              return <IndustriesNavItem key={item.href} />;
+            }
+            const itemSection = item.href.startsWith("#") ? item.href.slice(1) : null;
+            const isActive = itemSection !== null && activeId === itemSection;
             return (
               <a
                 key={item.href}
@@ -93,9 +105,9 @@ export function SiteHeader() {
           <Button
             asChild
             size="lg"
-            className="liquid-glass hidden h-11 rounded-full px-5 text-foreground sm:inline-flex"
+            className="hidden h-11 rounded-full px-5 sm:inline-flex"
           >
-            <a href={siteConfig.accessUrl}>Request access</a>
+            <a href="#contact">Book a Demo</a>
           </Button>
 
           <Sheet open={mobileNavOpen} onOpenChange={setMobileNavOpen}>
@@ -103,7 +115,7 @@ export function SiteHeader() {
               <Button
                 variant="outline"
                 size="icon"
-                className="liquid-glass size-11 rounded-full text-foreground lg:hidden"
+                className="size-11 rounded-full lg:hidden"
                 aria-label="Open navigation"
               >
                 <Menu aria-hidden="true" />
@@ -115,41 +127,56 @@ export function SiteHeader() {
             >
               <SheetHeader className="border-b border-border p-6 text-left">
                 <SheetTitle className="sr-only">Site navigation</SheetTitle>
-                <span className="wordmark">GetTAO</span>
+                <Link
+                  href="/"
+                  onClick={() => setMobileNavOpen(false)}
+                  className="block"
+                >
+                  <span className="wordmark">GetTAO</span>
+                </Link>
                 <SheetDescription>
-                  Autonomous operations, with a human on the throttle.
+                  Enterprise AI for Financial Services
                 </SheetDescription>
               </SheetHeader>
               <nav
                 className="flex flex-col px-4 py-6"
                 aria-label="Mobile primary"
               >
-                {navigation.map((item) => (
-                  <a
-                    key={item.href}
-                    className="rounded-lg px-3 py-4 font-heading text-2xl font-semibold tracking-[-0.025em] hover:bg-muted focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
-                    href={item.href}
-                    onClick={(event) => {
-                      if (!item.href.startsWith("#")) return;
-                      event.preventDefault();
-                      setMobileNavOpen(false);
-                      const targetId = item.href.slice(1);
-                      window.history.pushState(null, "", item.href);
-                      window.setTimeout(() => {
-                        document.getElementById(targetId)?.scrollIntoView({
-                          block: "start",
-                          behavior: "smooth",
-                        });
-                      }, 0);
-                    }}
-                  >
-                    {item.label}
-                  </a>
-                ))}
+                {navigation.map((item) => {
+                  if (item.children === "industries") {
+                    return (
+                      <div key={item.href} className="mobile-nav-group">
+                        <IndustriesNavItem />
+                      </div>
+                    );
+                  }
+                  return (
+                    <a
+                      key={item.href}
+                      className="rounded-lg px-3 py-4 text-2xl font-semibold tracking-[-0.025em] hover:bg-muted focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+                      href={item.href}
+                      onClick={(event) => {
+                        if (!item.href.startsWith("#")) return;
+                        event.preventDefault();
+                        setMobileNavOpen(false);
+                        const targetId = item.href.slice(1);
+                        window.history.pushState(null, "", item.href);
+                        window.setTimeout(() => {
+                          document.getElementById(targetId)?.scrollIntoView({
+                            block: "start",
+                            behavior: "smooth",
+                          });
+                        }, 0);
+                      }}
+                    >
+                      {item.label}
+                    </a>
+                  );
+                })}
               </nav>
               <div className="mt-auto p-4">
                 <Button asChild size="lg" className="h-12 w-full">
-                  <a href={siteConfig.accessUrl}>Request access</a>
+                  <a href="#contact">Book a Demo</a>
                 </Button>
               </div>
             </SheetContent>

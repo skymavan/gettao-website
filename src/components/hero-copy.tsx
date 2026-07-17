@@ -6,8 +6,8 @@ import { motion, useReducedMotion, type Variants } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { EASE_OUT } from "@/lib/motion";
 
-const HEADLINE_LEAD = ["Autonomous", "operations,"];
-const HEADLINE_EMPHASIS = ["human", "on", "the", "throttle."];
+const HEADLINE_LEAD = ["Enterprise", "AI", "for"];
+const HEADLINE_EMPHASIS = ["Financial", "Services"];
 
 const heroStagger: Variants = {
   hidden: {},
@@ -35,7 +35,7 @@ const headlineWord: Variants = {
 function StaticHeadline() {
   return (
     <h1 id="hero-title" className="hero-title">
-      Autonomous operations, <em>human on the throttle.</em>
+      Enterprise AI for <em>Financial Services.</em>
     </h1>
   );
 }
@@ -47,7 +47,7 @@ function AnimatedHeadline() {
       className="hero-title"
       variants={headlineParent}
     >
-      <span className="sr-only">Autonomous operations, human on the throttle.</span>
+      <span className="sr-only">Enterprise AI for Financial Services.</span>
       <span aria-hidden="true" style={{ display: "block" }}>
         {HEADLINE_LEAD.map((word) => (
           <span key={word} className="hero-word-wrap">
@@ -70,9 +70,9 @@ function AnimatedHeadline() {
   );
 }
 
-const EYEBROW = "Autonomous Agents · Connected Workflows · Human Control";
+const EYEBROW = "Enterprise AI · Document Intelligence · Automation";
 const DESCRIPTION =
-  "GetTAO runs the repetitive operational work across the tools you already use — triage, reconciliation, reporting, follow-ups. Autonomous agents do the work; a human approves every consequential action. Observable, reversible, and never a black box.";
+  "Gettao delivers purpose-built AI solutions for mortgage lenders, banks, and insurance providers. Automate document processing, compliance checks, reconciliation, and customer workflows — with human oversight on every consequential action.";
 
 function Actions({ accessUrl }: { accessUrl: string }) {
   return (
@@ -80,10 +80,10 @@ function Actions({ accessUrl }: { accessUrl: string }) {
       <Button
         asChild
         size="lg"
-        className="liquid-glass hero-primary-action rounded-full text-foreground"
+        className="hero-primary-action rounded-full"
       >
         <a href={accessUrl}>
-          Request access <ArrowUpRight aria-hidden="true" />
+          Book a Demo <ArrowUpRight aria-hidden="true" />
         </a>
       </Button>
       <a href="#how-it-works" className="hero-secondary-action">
@@ -95,7 +95,7 @@ function Actions({ accessUrl }: { accessUrl: string }) {
 
 export function HeroCopy({ accessUrl }: { accessUrl?: string }) {
   const reduce = useReducedMotion();
-  const url = accessUrl ?? "#access";
+  const url = accessUrl ?? "#contact";
 
   if (reduce) {
     return (

@@ -15,7 +15,7 @@ describe("structured data", () => {
       "FAQPage",
     ]);
     expect(serialized).toContain(siteConfig.email);
-    expect(serialized).toContain(siteConfig.nameLong);
+    expect(serialized).toContain(siteConfig.name);
     for (const faq of faqItems) expect(serialized).toContain(faq.question);
     expect(serialized).not.toContain("aggregateRating");
     expect(serialized).not.toContain("foundingDate");

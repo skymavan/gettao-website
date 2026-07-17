@@ -23,7 +23,7 @@ export function ProcessList() {
 
   if (reduce) {
     return (
-      <ol className="process-list">
+      <ol className="process-list" aria-label="Delivery process">
         {howItWorks.map((step) => (
           <li
             key={step.title}
@@ -52,6 +52,7 @@ export function ProcessList() {
       />
       <motion.ol
         className="process-list"
+        aria-label="Delivery process"
         variants={parent}
         initial="hidden"
         whileInView="visible"

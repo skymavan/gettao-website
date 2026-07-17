@@ -5,11 +5,11 @@ import { motion, useReducedMotion, type Variants } from "motion/react";
 import { EASE_OUT } from "@/lib/motion";
 
 const STAGES = [
-  { index: "01", label: "Observe", human: false },
-  { index: "02", label: "Reason", human: false },
-  { index: "03", label: "Approve", human: true },
-  { index: "04", label: "Act", human: false },
-  { index: "05", label: "Learn", human: false },
+  { index: "01", label: "Discover", human: false },
+  { index: "02", label: "Design", human: false },
+  { index: "03", label: "Build", human: false },
+  { index: "04", label: "Deploy", human: false },
+  { index: "05", label: "Optimize", human: false },
 ] as const;
 
 const routeParent: Variants = {
@@ -27,9 +27,9 @@ export function HeroRoute() {
 
   if (reduce) {
     return (
-      <ol className="site-shell hero-route" aria-label="Operating loop">
+      <ol className="site-shell hero-route" aria-label="Delivery process">
         {STAGES.map((stage) => (
-          <li key={stage.index} className={stage.human ? "hero-route-human" : undefined}>
+          <li key={stage.index}>
             <span aria-hidden="true">{stage.index}</span>
             <strong>{stage.label}</strong>
           </li>
@@ -41,7 +41,7 @@ export function HeroRoute() {
   return (
     <motion.ol
       className="site-shell hero-route"
-      aria-label="Operating loop"
+      aria-label="Delivery process"
       variants={routeParent}
       initial="hidden"
       animate="visible"
@@ -49,7 +49,6 @@ export function HeroRoute() {
       {STAGES.map((stage) => (
         <motion.li
           key={stage.index}
-          className={stage.human ? "hero-route-human" : undefined}
           variants={routeItem}
         >
           <span aria-hidden="true">{stage.index}</span>

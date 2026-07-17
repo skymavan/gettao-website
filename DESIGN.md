@@ -1,54 +1,74 @@
-# GetTAO Design System — Living Telemetry
+# GetTAO Design System — Professional Services Edition
+
+*Adapted from the visual language of OwnGCC (owngcc.com). Light theme, blue+orange accent palette, DM Sans mono-typeface.*
+
+---
 
 ## Direction
 
-GetTAO reads as a next-generation operations control room: a dark obsidian environment where autonomous systems run live and human checkpoints pulse warmly. The page signals artificial intelligence and operational reliability the moment it loads, then stays grounded as visitors move through capabilities, the operating loop, pricing, and access. GetTAO is written with capital G, T, A, O and never carries a registered-mark symbol.
+GetTAO reads as a professional, trustworthy B2B services brand: clean white backgrounds, clear typography, and restrained use of accent color. The design communicates reliability and partnership — autonomous operations made legible through clarity, not darkness. The brand signals capability without spectacle, using color only where it carries meaning.
 
-This identity is deliberately distinct from SkyMavan's navy / Signal Blue / Instrument Serif celestial direction.
+This identity deliberately moves away from the dark obsidian / jade / amber "control room" direction to a lighter, more corporate-clear visual language.
+
+---
 
 ## Color
 
-All semantic colors use HSL custom properties. The site is dark-only.
+All semantic colors use HSL custom properties on a light color scheme.
 
 | Role | HSL | Hex |
 | --- | --- | --- |
-| Obsidian background | `168 22% 5%` | `#0A1210` |
-| Deep Surface | `185 20% 9%` | `#0F181C` |
-| Bone foreground | `90 12% 95%` | `#F2F4F0` |
-| Sage secondary text | `150 8% 58%` | `#8E9994` |
-| Jade signal | `158 72% 52%` | `#2FE0A0` |
-| Amber human | `38 95% 56%` | `#F4A321` |
+| Background | `0 0% 100%` | `#FFFFFF` |
+| Surface | `0 0% 98%` | `#FAFAFA` |
+| Foreground | `0 0% 0%` | `#000000` |
+| Muted foreground | `0 0% 40%` | `#666666` |
+| Primary (Blue) | `203 98% 31%` | `#01629E` |
+| Accent (Orange-Red) | `9 100% 60%` | `#FF5134` |
+| Border | `0 0% 88%` | `#E0E0E0` |
+| Muted | `0 0% 96%` | `#F5F5F5` |
 
-Jade is the autonomous-system color: routes, links, focus rings, live nodes. Amber is reserved exclusively for human approval, selection, and the human checkpoint in the operating loop. Body text and controls must meet WCAG 2.2 AA contrast.
+Blue (`#01629E`) is the primary brand color: headings, links, focus rings, icon accents. Orange-red (`#FF5134`) is the action color: buttons, hover states, human approval markers, selected navigation. Body text and controls meet WCAG 2.2 AA contrast.
+
+---
 
 ## Typography
 
-- Display and wordmark: Fraunces (optical-size soft serif, 400, normal and italic) — the human voice; used with restraint.
-- Body and interface: Hanken Grotesk (400/500/600) — the system voice; clean, precise, legible.
-- Hero: `clamp(3.5rem, 8vw, 7.7rem)` with tight relative tracking.
-- H1–H3 use balanced wrapping; prose uses pretty wrapping at a readable measure.
+- **Single typeface:** DM Sans (400/500/600/700/800) — used for all display, body, interface, and heading roles.
+- No separate display or heading font. Weight and size create hierarchy.
+- Hero heading: `clamp(2.6rem, 5vw, 3.6rem)` with tight tracking.
+- H1–H3 use balanced wrapping with `font-weight: 600`.
+- Body: `1.125rem` (18px) base with comfortable line-height (1.7).
+
+---
 
 ## Layout and Components
 
-- Maximum content width is 80rem with fluid mobile gutters.
-- The hero occupies at least `100svh`; copy sits in purpose-built negative space with no tint, wash, or gradient overlay.
-- Capabilities use editorial rows; the operating loop uses a real ordered timeline; cards are reserved only for pricing comparisons.
-- The header floats above the hero. Liquid glass is limited to navigation and primary journey controls.
-- Content and form surfaces are opaque Deep Surface or Obsidian with restrained borders.
-- The operating loop is Observe → Reason → Approve → Act → Learn. Jade marks system stages; amber marks only the human approval stage.
+- Maximum content width is 87.5rem (1400px) with fluid mobile gutters.
+- The hero occupies at least 90svh with a two-column layout: copy left, visual right.
+- Capabilities use editorial rows; the operating loop uses an ordered timeline; cards are reserved only for pricing comparisons.
+- The header floats above the hero with a white background and subtle border. No glass effects.
+- Content and form surfaces are opaque white or surface background with border separators.
+- The operating loop is Observe → Reason → Approve → Act → Learn. Blue marks system stages; orange-red marks only the human approval stage.
 - Mobile navigation remains an accessible Sheet with managed focus.
 
 ## Signature
 
-A live operating-loop visualization: jade nodes for the autonomous stages (Observe, Reason, Act, Learn) and a single pulsing amber node for the human Approve gate. It reads as a system that is running, not a static diagram.
+The operating-loop visualization remains: blue nodes for autonomous stages (Observe, Reason, Act, Learn) and a single pulsing orange-red node for the human Approve gate.
+
+## Buttons
+
+- All buttons use full pill shape (`border-radius: 999px`).
+- Primary/default buttons: orange-red (`#FF5134`) background, white text, hover transitions to blue (`#01629E`).
+- Outline buttons: transparent background, border, hover to muted background.
+- Transition duration: 0.3s ease-out.
 
 ## Imagery and Motion
 
-- The hero artwork is local and art-directed (generated/placeholder for now, swappable later).
-- No color overlays, decorative blobs, radial gradients, unreadable UI text, or generic AI glow.
-- Hero copy uses one fully opaque three-stage rise: headline at 0ms, description at 200ms, actions at 400ms.
-- Fine-pointer desktops add at most a subtle parallax depth to the hero artwork; coarse pointers, small screens, and reduced-motion users receive a static image.
-- Controls use the standard easing `cubic-bezier(0.16, 1, 0.3, 1)`. No bounce or elastic easing.
+- The hero artwork is local and art-directed (placeholder for now, swappable later).
+- No color overlays, decorative blobs, radial gradients, or glass effects.
+- Hero copy uses a three-stage rise with stagger: headline at 0ms, description at 200ms, actions at 400ms.
+- Fine-pointer desktops add subtle parallax depth to hero artwork; coarse pointers, small screens, and reduced-motion users receive static.
+- Controls use the standard easing `cubic-bezier(0.16, 1, 0.3, 1)`.
 - Reduced motion omits all entrance choreography and artwork movement while keeping content visible.
 
 ## Responsive and Accessibility
@@ -57,3 +77,4 @@ A live operating-loop visualization: jade nodes for the autonomous stages (Obser
 - One H1, semantic landmarks, labelled ordered routes, and persistent form labels.
 - All interactive targets are at least 44px and keep visible keyboard focus.
 - Respect safe-area insets and prevent horizontal overflow.
+- Forms use underline-style inputs with bottom-border focus state, matching OwnGCC's clean form design.

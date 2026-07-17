@@ -9,8 +9,8 @@ describe("machine-readable content", () => {
   it("publishes an AI-readable company summary", () => {
     const llms = readFileSync(path.join(publicDir, "llms.txt"), "utf8");
 
-    expect(llms).toContain("# GetTAO");
-    expect(llms).toContain("https://gettao.io/#capabilities");
-    expect(llms).toContain("hello@gettao.io");
+    expect(llms).toContain("# Gettao");
+    expect(llms).toContain("https://gettao.ai/#industries");
+    expect(llms).toContain("hello@gettao.ai");
   });
 });
