@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 import { ClosingCta } from "@/components/closing-cta";
 import { ContactForm } from "@/components/contact-form";
@@ -20,6 +21,7 @@ import {
   resources,
   footerLinks,
 } from "@/content/site";
+import { withBasePath } from "@/lib/base-path";
 import { createStructuredData } from "@/lib/structured-data";
 
 export default function Home() {
@@ -36,9 +38,9 @@ export default function Home() {
       <main id="main-content">
         {/* Hero */}
         <section id="top" className="hero-section" aria-labelledby="hero-title">
-          <HeroVisual />
           <div className="site-shell hero-inner">
             <HeroCopy accessUrl={accessUrl} />
+            <HeroVisual />
           </div>
         </section>
 
@@ -225,7 +227,7 @@ export default function Home() {
                 <p className="eyebrow">FAQ</p>
                 <h2 id="faq-title">Frequently asked questions.</h2>
                 <p className="section-lede">
-                  Everything you need to know about Gettao's enterprise AI platform for financial services.
+                  Everything you need to know about Gettao&apos;s enterprise AI platform for financial services.
                 </p>
               </div>
             </Reveal>
@@ -261,8 +263,14 @@ export default function Home() {
       <footer className="site-footer">
         <Reveal className="site-shell footer-grid">
           <div className="footer-brand-wrap">
-            <a href="#top" className="footer-brand">
-              Gettao
+            <a href="#top" className="footer-brand" aria-label="Gettao Home">
+              <Image
+                src={withBasePath("/logo-footer.png")}
+                alt="Gettao"
+                width={160}
+                height={80}
+                className="h-12 w-auto"
+              />
             </a>
             <p>Enterprise AI for Financial Services</p>
             <div className="footer-socials" aria-label="Social links">

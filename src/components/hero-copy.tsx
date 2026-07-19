@@ -6,8 +6,8 @@ import { motion, useReducedMotion, type Variants } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { EASE_OUT } from "@/lib/motion";
 
-const HEADLINE_LEAD = ["Enterprise", "AI", "for"];
-const HEADLINE_EMPHASIS = ["Financial", "Services"];
+const HEADLINE_LEAD = ["Digital", "workers"];
+const HEADLINE_EMPHASIS = ["for", "financial", "operations."];
 
 const heroStagger: Variants = {
   hidden: {},
@@ -35,7 +35,7 @@ const headlineWord: Variants = {
 function StaticHeadline() {
   return (
     <h1 id="hero-title" className="hero-title">
-      Enterprise AI for <em>Financial Services.</em>
+      Digital workers for <em>financial operations.</em>
     </h1>
   );
 }
@@ -47,7 +47,7 @@ function AnimatedHeadline() {
       className="hero-title"
       variants={headlineParent}
     >
-      <span className="sr-only">Enterprise AI for Financial Services.</span>
+      <span className="sr-only">Digital workers for financial operations.</span>
       <span aria-hidden="true" style={{ display: "block" }}>
         {HEADLINE_LEAD.map((word) => (
           <span key={word} className="hero-word-wrap">
@@ -70,9 +70,9 @@ function AnimatedHeadline() {
   );
 }
 
-const EYEBROW = "Enterprise AI · Document Intelligence · Automation";
+const EYEBROW = "DIGITAL WORKERS · FINANCIAL OPERATIONS · HUMAN CONTROL";
 const DESCRIPTION =
-  "Gettao delivers purpose-built AI solutions for mortgage lenders, banks, and insurance providers. Automate document processing, compliance checks, reconciliation, and customer workflows — with human oversight on every consequential action.";
+  "Gettao automates document-heavy work across mortgage, banking, and insurance\u2014from intake and validation to compliance and follow-up\u2014with human review at every critical step.";
 
 function Actions({ accessUrl }: { accessUrl: string }) {
   return (

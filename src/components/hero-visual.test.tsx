@@ -4,13 +4,20 @@ import { describe, expect, it } from "vitest";
 import { HeroVisual } from "@/components/hero-visual";
 
 describe("HeroVisual", () => {
-  it("renders the telemetry orbit and grid without remote video or images", () => {
+  it("renders the hero picture element with responsive sources", () => {
     const { container } = render(<HeroVisual />);
 
-    expect(container.querySelector(".telemetry-grid")).not.toBeNull();
-    expect(container.querySelector(".telemetry-orbit")).not.toBeNull();
+    expect(container.querySelector(".hero-visual")).not.toBeNull();
+    expect(container.querySelector(".hero-picture")).not.toBeNull();
+    expect(container.querySelector(".hero-image")).not.toBeNull();
     expect(container.querySelector("video")).toBeNull();
-    expect(container.querySelector("img")).toBeNull();
+
+    const visual = container.querySelector(".hero-visual");
+    expect(visual?.getAttribute("aria-hidden")).toBe("true");
+
+    const img = container.querySelector(".hero-image") as HTMLImageElement;
+    expect(img.src).toContain("gettao-hero-desktop.webp");
+    expect(img.alt).toBe("");
   });
 
   it("caps pointer depth and resets it when the pointer leaves", () => {

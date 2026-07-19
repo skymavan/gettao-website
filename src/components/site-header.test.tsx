@@ -5,13 +5,14 @@ import { describe, expect, it } from "vitest";
 import { SiteHeader } from "@/components/site-header";
 
 describe("SiteHeader", () => {
-  it("renders the exact wordmark and CTA", () => {
+  it("renders the logo image and CTA", () => {
     render(<SiteHeader />);
 
-    const wordmark = screen.getByRole("link", { name: "Gettao Home" });
-    expect(wordmark.querySelector("img")).toBeNull();
-    expect(wordmark).toHaveTextContent("GetTAO");
-    expect(wordmark).toHaveAttribute("href", "/");
+    const logoLink = screen.getByRole("link", { name: "Gettao Home" });
+    const logoImg = logoLink.querySelector("img") as HTMLImageElement;
+    expect(logoImg).not.toBeNull();
+    expect(logoImg.src).toContain("logo-header.png");
+    expect(logoLink).toHaveAttribute("href", "/");
     expect(
       screen.getAllByRole("link", { name: "Book a Demo" })[0],
     ).toHaveAttribute("href", "#contact");

@@ -20,18 +20,18 @@ beforeEach(() => {
 });
 
 describe("Home", () => {
-  it("presents the financial-services hero narrative", () => {
+  it("presents the digital-workers hero narrative", () => {
     render(<Home />);
 
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: "Enterprise AI for Financial Services.",
+        name: "Digital workers for financial operations.",
       }),
     ).toBeVisible();
     expect(
       screen.getByText(
-        "Gettao delivers purpose-built AI solutions for mortgage lenders, banks, and insurance providers. Automate document processing, compliance checks, reconciliation, and customer workflows — with human oversight on every consequential action.",
+        /Gettao automates document-heavy work across mortgage, banking, and insurance/,
       ),
     ).toBeVisible();
     expect(
@@ -65,5 +65,33 @@ describe("Home", () => {
     for (const label of ["Discover", "Design", "Build", "Deploy", "Optimize"]) {
       expect(within(processList).getByText(label)).toBeVisible();
     }
+  });
+
+  it("renders the hero illustration images with responsive sources", () => {
+    render(<Home />);
+
+    const sources = screen.getAllByRole("img", { hidden: true });
+    expect(sources.length).toBeGreaterThanOrEqual(1);
+
+    const heroImg = document.querySelector(".hero-image") as HTMLImageElement;
+    expect(heroImg).not.toBeNull();
+    expect(heroImg.src).toContain("gettao-hero-desktop.webp");
+
+    const avifSources = document.querySelectorAll('source[type="image/avif"]');
+    expect(avifSources.length).toBeGreaterThanOrEqual(1);
+    const lastAvif = avifSources[avifSources.length - 1] as HTMLSourceElement;
+    expect(lastAvif.srcset).toContain("gettao-hero-desktop.avif");
+  });
+
+  it("renders the header and footer logo images", () => {
+    render(<Home />);
+
+    const headerLogo = document.querySelector(".site-header img") as HTMLImageElement;
+    expect(headerLogo).not.toBeNull();
+    expect(headerLogo.src).toContain("logo-header.png");
+
+    const footerLogo = document.querySelector(".footer-brand img") as HTMLImageElement;
+    expect(footerLogo).not.toBeNull();
+    expect(footerLogo.src).toContain("logo-footer.png");
   });
 });

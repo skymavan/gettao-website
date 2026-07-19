@@ -2,6 +2,8 @@
 
 import type { PointerEvent } from "react";
 
+import { withBasePath } from "@/lib/base-path";
+
 const MAX_SHIFT_X = 8;
 const MAX_SHIFT_Y = 5;
 
@@ -9,14 +11,6 @@ function setDepth(element: HTMLElement, x: number, y: number) {
   element.style.setProperty("--hero-shift-x", `${x}px`);
   element.style.setProperty("--hero-shift-y", `${y}px`);
 }
-
-const ORBIT = [
-  { x: 400, y: 100, human: false },
-  { x: 685, y: 307, human: false },
-  { x: 576, y: 643, human: true },
-  { x: 224, y: 643, human: false },
-  { x: 115, y: 307, human: false },
-];
 
 export function HeroVisual() {
   function handlePointerMove(event: PointerEvent<HTMLDivElement>) {
@@ -55,51 +49,27 @@ export function HeroVisual() {
       onPointerMove={handlePointerMove}
       onPointerLeave={resetDepth}
     >
-      <div className="telemetry-grid" />
-      <svg
-        className="telemetry-orbit"
-        viewBox="0 0 800 800"
-        preserveAspectRatio="xMidYMid meet"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle
-          cx="400"
-          cy="400"
-          r="300"
-          fill="none"
-          stroke="hsl(var(--signal) / 0.18)"
-          strokeWidth="1"
+      <picture className="hero-picture">
+        <source
+          type="image/avif"
+          srcSet={`${withBasePath("/gettao-hero-desktop.avif")} 1440w, ${withBasePath("/gettao-hero-mobile.avif")} 768w`}
+          sizes="(min-width: 768px) 50vw, 100vw"
         />
-        <circle
-          cx="400"
-          cy="400"
-          r="180"
-          fill="none"
-          stroke="hsl(var(--signal) / 0.08)"
-          strokeWidth="1"
+        <source
+          type="image/webp"
+          srcSet={`${withBasePath("/gettao-hero-desktop.webp")} 1440w, ${withBasePath("/gettao-hero-mobile.webp")} 768w`}
+          sizes="(min-width: 768px) 50vw, 100vw"
         />
-        {ORBIT.map((node) => (
-          <g key={`${node.x}-${node.y}`}>
-            <circle
-              cx={node.x}
-              cy={node.y}
-              r={node.human ? 9 : 6}
-              fill={node.human ? "hsl(var(--human))" : "hsl(var(--signal))"}
-            />
-            {node.human && (
-              <circle
-                cx={node.x}
-                cy={node.y}
-                r="9"
-                fill="none"
-                stroke="hsl(var(--human))"
-                strokeWidth="2"
-                className="telemetry-pulse"
-              />
-            )}
-          </g>
-        ))}
-      </svg>
+        <img
+          className="hero-image"
+          src={withBasePath("/gettao-hero-desktop.webp")}
+          alt=""
+          width="1440"
+          height="1080"
+          decoding="async"
+          fetchPriority="high"
+        />
+      </picture>
     </div>
   );
 }

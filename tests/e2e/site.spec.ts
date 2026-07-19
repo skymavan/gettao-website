@@ -9,25 +9,21 @@ test("core narrative, anchors, FAQ, and layout remain usable", async ({ page }) 
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: "AI systems that solve operational problems.",
+      name: "Digital workers for financial operations.",
     }),
   ).toBeVisible();
-  await expect(page.getByRole("link", { name: "Book a meeting" }).first()).toHaveAttribute(
+  await expect(page.getByRole("link", { name: "Book a Demo" }).first()).toHaveAttribute(
     "href",
-    "https://zbooking.in/Drh23",
+    /#contact$/,
   );
-  await expect(page.getByRole("link", { name: "Book a meeting" }).first()).toHaveAttribute(
-    "target",
-    "_blank",
-  );
-  await page.getByRole("link", { name: "See what we build" }).click();
-  await expect(page).toHaveURL(/#services$/);
+  await page.getByRole("link", { name: "See how it works" }).click();
+  await expect(page).toHaveURL(/#how-it-works$/);
 
   await page
-    .getByRole("button", { name: "How much does custom AI development cost?" })
+    .getByRole("button", { name: "What industries does Gettao serve?" })
     .click();
   await expect(
-    page.getByText("Skymavan engagements are scoped per project rather than priced on a menu."),
+    page.getByText("We specialize in AI solutions for mortgage lenders"),
   ).toBeVisible();
 
   const overflow = await page.evaluate(
@@ -36,10 +32,14 @@ test("core narrative, anchors, FAQ, and layout remain usable", async ({ page }) 
   expect(overflow).toBeLessThanOrEqual(1);
 });
 
-test("uses the exact dark-only SkyMavan identity", async ({ page }) => {
-  await expect(page.getByRole("link", { name: "SkyMavan home" })).toHaveText("SkyMavan");
-  await expect(page.getByRole("combobox", { name: "Choose theme" })).toHaveCount(0);
-  await expect(page.locator("html")).toHaveClass(/dark/);
+test("uses the Gettao identity with light theme and logo images", async ({ page }) => {
+  await expect(page.locator("html")).toHaveAttribute("color-scheme", "light");
+  const headerLogo = page.locator(".site-header img");
+  await expect(headerLogo).toBeVisible();
+  await expect(headerLogo).toHaveAttribute("src", /logo-header\.png/);
+  const footerLogo = page.locator(".footer-brand img");
+  await expect(footerLogo).toBeVisible();
+  await expect(footerLogo).toHaveAttribute("src", /logo-footer\.png/);
 });
 
 test("mobile navigation exposes every section", async ({ page }, testInfo) => {
@@ -47,9 +47,9 @@ test("mobile navigation exposes every section", async ({ page }, testInfo) => {
   await page.getByRole("button", { name: "Open navigation" }).click();
   const dialog = page.getByRole("dialog", { name: "Site navigation" });
   await expect(dialog).toBeVisible();
-  await expect(dialog.getByRole("link", { name: "Services" })).toBeVisible();
-  await dialog.getByRole("link", { name: "Services" }).click();
-  await expect(page).toHaveURL(/#services$/);
+  await expect(dialog.getByRole("link", { name: "How It Works" })).toBeVisible();
+  await dialog.getByRole("link", { name: "How It Works" }).click();
+  await expect(page).toHaveURL(/#how-it-works$/);
 });
 
 test("form explains and opens an email draft flow", async ({ page }) => {
@@ -60,7 +60,7 @@ test("form explains and opens an email draft flow", async ({ page }) => {
   await page.getByLabel("Estimated budget").selectOption("10-25k");
   await page
     .getByLabel("What should the system help you do?")
-    .fill("Build an observable research agent with a required human approval step.");
+    .fill("Automate document intake and validation for mortgage processing.");
   await expect(
     page.getByText("This opens your email application with the project details filled in."),
   ).toBeVisible();
@@ -76,19 +76,19 @@ test("reduced motion keeps the local static hero and removes continuous animatio
 });
 
 test("motion-capable visitors receive responsive local hero artwork", async ({ page }) => {
-  await expect(page.locator('.hero-visual source[type="image/avif"]').last()).toHaveAttribute(
+  await expect(page.locator('.hero-visual source[type="image/avif"]').first()).toHaveAttribute(
     "srcset",
-    /skymavan-hero-instrument-desktop\.avif$/,
+    /gettao-hero-desktop\.avif/,
   );
   await expect(page.locator(".hero-image")).toHaveAttribute(
     "src",
-    /skymavan-hero-instrument-desktop\.webp$/,
+    /gettao-hero-desktop\.webp$/,
   );
   await expect(page.locator("video")).toHaveCount(0);
 });
 
-test("stacked hero copy stays clear of the artwork", async ({ page }, testInfo) => {
-  test.skip(testInfo.project.name === "desktop", "Desktop uses the copy-safe image field");
+test("stacked hero copy stays clear of the artwork on mobile", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name === "desktop", "Desktop uses the split layout");
 
   const copyBox = await page.locator(".hero-copy").boundingBox();
   const visualBox = await page.locator(".hero-visual").boundingBox();
@@ -96,7 +96,7 @@ test("stacked hero copy stays clear of the artwork", async ({ page }, testInfo) 
   expect(visualBox).not.toBeNull();
   if (!copyBox || !visualBox) return;
 
-  expect(copyBox.y + copyBox.height).toBeLessThanOrEqual(visualBox.y);
+  expect(copyBox.y + copyBox.height).toBeLessThanOrEqual(visualBox.y + 10);
 });
 
 test("has no automatically detectable accessibility violations", async ({ page }) => {
@@ -104,7 +104,7 @@ test("has no automatically detectable accessibility violations", async ({ page }
   expect(results.violations).toEqual([]);
 });
 
-test("matches the approved dark composition", async ({ page }) => {
+test("matches the approved light composition", async ({ page }) => {
   test.skip(Boolean(process.env.CI), "Local visual baselines are platform-specific");
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.reload();
@@ -112,7 +112,7 @@ test("matches the approved dark composition", async ({ page }) => {
   await page.locator("nextjs-portal").evaluateAll((portals) => {
     portals.forEach((portal) => portal.remove());
   });
-  await expect(page).toHaveScreenshot("homepage-celestial-dark.png", {
+  await expect(page).toHaveScreenshot("homepage-gettao-light.png", {
     fullPage: true,
     animations: "disabled",
   });

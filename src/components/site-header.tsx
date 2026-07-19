@@ -2,6 +2,7 @@
 
 import { Menu } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -15,7 +16,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { navigation, siteConfig } from "@/content/site";
+import { navigation } from "@/content/site";
+import { withBasePath } from "@/lib/base-path";
 
 const SECTION_IDS = navigation
   .filter((item) => item.href.startsWith("#"))
@@ -72,7 +74,14 @@ export function SiteHeader() {
             }
           }}
         >
-          <span className="wordmark">GetTAO</span>
+          <Image
+            src={withBasePath("/logo-header.png")}
+            alt=""
+            width={40}
+            height={40}
+            priority
+            className="h-10 w-auto"
+          />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
@@ -132,7 +141,13 @@ export function SiteHeader() {
                   onClick={() => setMobileNavOpen(false)}
                   className="block"
                 >
-                  <span className="wordmark">GetTAO</span>
+                  <Image
+                    src={withBasePath("/logo-header.png")}
+                    alt=""
+                    width={40}
+                    height={40}
+                    className="h-10 w-auto"
+                  />
                 </Link>
                 <SheetDescription>
                   Enterprise AI for Financial Services

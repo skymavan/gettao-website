@@ -1,4 +1,5 @@
 import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import { withBasePath } from "@/lib/base-path";
@@ -8,7 +9,13 @@ export default function NotFound() {
     <main className="grid min-h-screen place-items-center bg-background px-6 text-foreground">
       <div className="max-w-xl text-center">
         <div className="mx-auto mb-8 flex w-fit items-center gap-2">
-          <span className="wordmark">GetTAO</span>
+          <Image
+            src={withBasePath("/logo-header.png")}
+            alt="Gettao"
+            width={64}
+            height={64}
+            className="h-16 w-auto"
+          />
         </div>
         <p className="eyebrow justify-center">404 / Route not found</p>
         <h1 className="text-5xl font-semibold tracking-[-0.02em] sm:text-7xl">
@@ -16,11 +23,11 @@ export default function NotFound() {
         </h1>
         <p className="mx-auto mt-6 max-w-md text-lg text-muted-foreground">
           The page you are looking for does not exist. Return to the homepage to
-          explore how GetTAO runs operations autonomously.
+          explore how Gettao runs operations autonomously.
         </p>
         <Button asChild size="lg" className="mt-8 h-12 px-5">
           <a href={withBasePath("/")}>
-            <ArrowLeft aria-hidden="true" /> Back to GetTAO
+            <ArrowLeft aria-hidden="true" /> Back to Gettao
           </a>
         </Button>
       </div>

@@ -10,9 +10,8 @@ const parent: Variants = {
   visible: { transition: { staggerChildren: 0.14, delayChildren: 0.08 } },
 };
 
-export function PricingGrid({ accessUrl }: { accessUrl?: string }) {
+export function PricingGrid() {
   const reduce = useReducedMotion();
-  const url = accessUrl ?? "#contact";
 
   const cards = (
     <>
