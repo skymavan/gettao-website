@@ -23,6 +23,7 @@ export type Stage = {
   index: string;
   title: string;
   description: string;
+  human?: boolean;
 };
 
 export type Principle = {
@@ -42,6 +43,12 @@ export type IndustryNavItem = {
   description: string;
   href: string;
   icon: string;
+};
+
+export type NavigationItem = {
+  label: string;
+  href: string;
+  children?: "industries";
 };
 
 export const siteConfig: SiteConfig = {
@@ -80,7 +87,7 @@ export const industryNavItems: ReadonlyArray<IndustryNavItem> = [
   },
 ];
 
-export const navigation = [
+export const navigation: ReadonlyArray<NavigationItem> = [
   { label: "Industries", href: "#industries", children: "industries" },
   { label: "Platform", href: "/platform" },
   { label: "How It Works", href: "#how-it-works" },
@@ -242,6 +249,7 @@ export const howItWorks: ReadonlyArray<Stage> = [
     title: "Optimize",
     description:
       "Continuously monitor, improve, and scale your AI solutions as your organization grows.",
+    human: true,
   },
 ];
 
