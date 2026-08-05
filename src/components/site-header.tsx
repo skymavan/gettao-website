@@ -17,6 +17,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { navigation } from "@/content/site";
+import { internalHref } from "@/lib/base-path";
 
 const SECTION_IDS = navigation
   .filter((item) => item.href.startsWith("#"))
@@ -87,7 +88,7 @@ export function SiteHeader() {
               <a
                 key={item.href}
                 className={`nav-link ${isActive ? "nav-link-active" : ""}`}
-                href={item.href}
+                href={internalHref(item.href)}
               >
                 {item.label}
                 {isActive && !reduce && (
@@ -155,7 +156,7 @@ export function SiteHeader() {
                     <a
                       key={item.href}
                       className="rounded-lg px-3 py-4 text-2xl font-semibold tracking-[-0.025em] hover:bg-muted focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
-                      href={item.href}
+                      href={internalHref(item.href)}
                       onClick={(event) => {
                         if (!item.href.startsWith("#")) return;
                         event.preventDefault();

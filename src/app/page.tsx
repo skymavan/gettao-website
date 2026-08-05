@@ -22,6 +22,7 @@ import {
   footerLinks,
 } from "@/content/site";
 import { createStructuredData } from "@/lib/structured-data";
+import { internalHref } from "@/lib/base-path";
 
 export default function Home() {
   const schema = JSON.stringify(createStructuredData()).replace(/</g, "\\u003c");
@@ -290,25 +291,25 @@ export default function Home() {
           <nav aria-label="Solutions" className="footer-nav">
             <p className="footer-heading">Solutions</p>
             {footerLinks.solutions.map((link) => (
-              <a key={link.label} href={link.href}>{link.label}</a>
+              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
             ))}
           </nav>
           <nav aria-label="Platform" className="footer-nav">
             <p className="footer-heading">Platform</p>
             {footerLinks.platform.map((link) => (
-              <a key={link.label} href={link.href}>{link.label}</a>
+              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
             ))}
           </nav>
           <nav aria-label="Resources" className="footer-nav">
             <p className="footer-heading">Resources</p>
             {footerLinks.resources.map((link) => (
-              <a key={link.label} href={link.href}>{link.label}</a>
+              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
             ))}
           </nav>
           <nav aria-label="Company" className="footer-nav">
             <p className="footer-heading">Company</p>
             {footerLinks.company.map((link) => (
-              <a key={link.label} href={link.href}>{link.label}</a>
+              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
             ))}
           </nav>
           <div className="footer-meta">

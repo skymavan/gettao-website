@@ -5,6 +5,7 @@ import { motion, useReducedMotion, type Variants } from "motion/react";
 import { useCallback, useRef, useState } from "react";
 
 import { industryNavItems } from "@/content/site";
+import { internalHref } from "@/lib/base-path";
 
 const ICONS: Record<string, typeof Landmark> = {
   landmark: Landmark,
@@ -46,7 +47,7 @@ function DropdownPanel({ onItemClick }: { onItemClick: () => void }) {
             return (
               <motion.a
                 key={item.id}
-                href={item.href}
+                href={internalHref(item.href)}
                 variants={reduce ? undefined : dropdownItem}
                 className="group flex items-center gap-3 rounded-lg px-4 py-3 transition-colors hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
                 onClick={onItemClick}
@@ -162,7 +163,7 @@ export function IndustriesNavItem() {
               return (
                 <a
                   key={item.id}
-                  href={item.href}
+                  href={internalHref(item.href)}
                   className="flex items-center gap-3 rounded-lg px-3 py-3 text-base font-medium hover:bg-muted focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
                 >
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-muted/50 text-muted-foreground">

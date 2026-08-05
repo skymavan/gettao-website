@@ -61,6 +61,22 @@ for (const route of footerLogoRoutes) {
   });
 }
 
+const footerSolutionLinks = [
+  { name: "Mortgage", route: "/solutions/mortgage" },
+  { name: "Banking", route: "/solutions/banking" },
+  { name: "Insurance", route: "/solutions/insurance" },
+];
+
+for (const { name, route } of footerSolutionLinks) {
+  test(`footer Solutions link navigates to ${name}`, async ({ page }) => {
+    await page.goto("/");
+    const footer = page.locator("footer");
+    await footer.getByRole("link", { name, exact: true }).click();
+    await expect(page).toHaveURL(new RegExp(`${route}/?$`));
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  });
+}
+
 test("mobile navigation exposes every section", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name === "desktop", "Desktop uses inline navigation");
   await page.getByRole("button", { name: "Open navigation" }).click();

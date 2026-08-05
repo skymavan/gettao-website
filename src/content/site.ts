@@ -378,17 +378,17 @@ export const finalCta = {
 
 export const footerLinks = {
   solutions: [
-    { label: "Mortgage", href: "#mortgage" },
-    { label: "Banking", href: "#banking" },
-    { label: "Insurance", href: "#insurance" },
+    { label: "Mortgage", href: "/solutions/mortgage" },
+    { label: "Banking", href: "/solutions/banking" },
+    { label: "Insurance", href: "/solutions/insurance" },
   ],
   platform: [
-    { label: "AI Platform", href: "#platform" },
-    { label: "AI Agents", href: "#ai-agents" },
-    { label: "Document Intelligence", href: "#document-intelligence" },
-    { label: "Workflow Automation", href: "#workflow-automation" },
-    { label: "Predictive Intelligence", href: "#predictive-intelligence" },
-    { label: "Enterprise Search", href: "#enterprise-search" },
+    { label: "AI Platform", href: "/platform" },
+    { label: "AI Agents", href: "/platform#capabilities" },
+    { label: "Document Intelligence", href: "/platform#capabilities" },
+    { label: "Workflow Automation", href: "/platform#capabilities" },
+    { label: "Predictive Intelligence", href: "/platform#capabilities" },
+    { label: "Enterprise Search", href: "/platform#capabilities" },
   ],
   resources: [
     { label: "Blog", href: "#" },

@@ -8,6 +8,7 @@ import { Logo } from "@/components/logo";
 import { SiteHeader } from "@/components/site-header";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/reveal";
 import { siteConfig, footerLinks } from "@/content/site";
+import { internalHref } from "@/lib/base-path";
 
 export const metadata: Metadata = {
   title: "Enterprise AI Platform for Financial Services | Gettao",
@@ -543,25 +544,25 @@ export default function PlatformPage() {
           <nav aria-label="Solutions" className="footer-nav">
             <p className="footer-heading">Solutions</p>
             {footerLinks.solutions.map((link) => (
-              <a key={link.label} href={link.href}>{link.label}</a>
+              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
             ))}
           </nav>
           <nav aria-label="Platform" className="footer-nav">
             <p className="footer-heading">Platform</p>
             {footerLinks.platform.map((link) => (
-              <a key={link.label} href={link.href}>{link.label}</a>
+              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
             ))}
           </nav>
           <nav aria-label="Resources" className="footer-nav">
             <p className="footer-heading">Resources</p>
             {footerLinks.resources.map((link) => (
-              <a key={link.label} href={link.href}>{link.label}</a>
+              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
             ))}
           </nav>
           <nav aria-label="Company" className="footer-nav">
             <p className="footer-heading">Company</p>
             {footerLinks.company.map((link) => (
-              <a key={link.label} href={link.href}>{link.label}</a>
+              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
             ))}
           </nav>
           <div className="footer-meta">

@@ -8,3 +8,14 @@ export function withBasePath(
 
   return `${basePath}${path.startsWith("/") ? path : `/${path}`}`;
 }
+
+export function internalHref(
+  path: string,
+  basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "",
+): string {
+  if (!path.startsWith("/") || path.startsWith("//")) {
+    return path;
+  }
+
+  return withBasePath(path, basePath);
+}

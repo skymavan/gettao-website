@@ -8,6 +8,7 @@ import { Logo } from "@/components/logo";
 import { SiteHeader } from "@/components/site-header";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/reveal";
 import { siteConfig, footerLinks } from "@/content/site";
+import { internalHref } from "@/lib/base-path";
 
 export const metadata: Metadata = {
   title: "AI Solutions for Banks | Intelligent Banking Automation | Gettao",
@@ -183,7 +184,7 @@ export default function BankingPage() {
                 <a href="#contact" className="group/button inline-flex shrink-0 items-center justify-center rounded-full border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground hover:bg-primary/80 gap-1.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 h-12 px-5">
                   Book a Demo <ArrowUpRight aria-hidden="true" />
                 </a>
-                <a href="/contact?type=consultation&industry=banking" className="group/button inline-flex shrink-0 items-center justify-center rounded-full border bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 border-border bg-background hover:bg-muted hover:text-foreground gap-1.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 h-12 px-5">
+                <a href={internalHref("/contact?type=consultation&industry=banking")} className="group/button inline-flex shrink-0 items-center justify-center rounded-full border bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 border-border bg-background hover:bg-muted hover:text-foreground gap-1.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 h-12 px-5">
                   Talk to an AI Expert
                 </a>
               </div>
@@ -411,25 +412,25 @@ export default function BankingPage() {
           <nav aria-label="Solutions" className="footer-nav">
             <p className="footer-heading">Solutions</p>
             {footerLinks.solutions.map((link) => (
-              <a key={link.label} href={link.href}>{link.label}</a>
+              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
             ))}
           </nav>
           <nav aria-label="Platform" className="footer-nav">
             <p className="footer-heading">Platform</p>
             {footerLinks.platform.map((link) => (
-              <a key={link.label} href={link.href}>{link.label}</a>
+              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
             ))}
           </nav>
           <nav aria-label="Resources" className="footer-nav">
             <p className="footer-heading">Resources</p>
             {footerLinks.resources.map((link) => (
-              <a key={link.label} href={link.href}>{link.label}</a>
+              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
             ))}
           </nav>
           <nav aria-label="Company" className="footer-nav">
             <p className="footer-heading">Company</p>
             {footerLinks.company.map((link) => (
-              <a key={link.label} href={link.href}>{link.label}</a>
+              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
             ))}
           </nav>
           <div className="footer-meta">
