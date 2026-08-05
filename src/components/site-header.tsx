@@ -2,12 +2,12 @@
 
 import { Menu } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { IndustriesNavItem } from "@/components/industries-dropdown";
+import { Logo } from "@/components/logo";
 import {
   Sheet,
   SheetContent,
@@ -17,7 +17,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { navigation } from "@/content/site";
-import { withBasePath } from "@/lib/base-path";
 
 const SECTION_IDS = navigation
   .filter((item) => item.href.startsWith("#"))
@@ -74,14 +73,7 @@ export function SiteHeader() {
             }
           }}
         >
-          <Image
-            src={withBasePath("/logo-header.png")}
-            alt=""
-            width={40}
-            height={40}
-            priority
-            className="h-10 w-auto"
-          />
+          <Logo priority />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
@@ -141,13 +133,7 @@ export function SiteHeader() {
                   onClick={() => setMobileNavOpen(false)}
                   className="block"
                 >
-                  <Image
-                    src={withBasePath("/logo-header.png")}
-                    alt=""
-                    width={40}
-                    height={40}
-                    className="h-10 w-auto"
-                  />
+                  <Logo />
                 </Link>
                 <SheetDescription>
                   Enterprise AI for Financial Services

@@ -88,10 +88,23 @@ describe("Home", () => {
 
     const headerLogo = document.querySelector(".site-header img") as HTMLImageElement;
     expect(headerLogo).not.toBeNull();
-    expect(headerLogo.src).toContain("logo-header.png");
+    expect(headerLogo.src).toContain("gettaologo.png");
 
     const footerLogo = document.querySelector(".footer-brand img") as HTMLImageElement;
     expect(footerLogo).not.toBeNull();
-    expect(footerLogo.src).toContain("logo-footer.png");
+    expect(footerLogo.src).toContain("gettaologo.png");
+  });
+
+  it("keeps the footer logo identical to the navbar logo", () => {
+    render(<Home />);
+
+    const headerLogo = document.querySelector(".site-header img") as HTMLImageElement;
+    const footerLogo = document.querySelector(".footer-brand img") as HTMLImageElement;
+
+    expect(footerLogo.getAttribute("src")).toBe(headerLogo.getAttribute("src"));
+    expect(footerLogo.getAttribute("width")).toBe(headerLogo.getAttribute("width"));
+    expect(footerLogo.getAttribute("height")).toBe(headerLogo.getAttribute("height"));
+    expect(footerLogo.className).toContain("h-[7.5rem]");
+    expect(footerLogo.className).toBe(headerLogo.className);
   });
 });

@@ -1,6 +1,6 @@
 import { ArrowLeft } from "lucide-react";
-import Image from "next/image";
 
+import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { withBasePath } from "@/lib/base-path";
 
@@ -9,13 +9,7 @@ export default function NotFound() {
     <main className="grid min-h-screen place-items-center bg-background px-6 text-foreground">
       <div className="max-w-xl text-center">
         <div className="mx-auto mb-8 flex w-fit items-center gap-2">
-          <Image
-            src={withBasePath("/logo-header.png")}
-            alt="Gettao"
-            width={64}
-            height={64}
-            className="h-16 w-auto"
-          />
+          <Logo className="h-[12rem] w-auto" />
         </div>
         <p className="eyebrow justify-center">404 / Route not found</p>
         <h1 className="text-5xl font-semibold tracking-[-0.02em] sm:text-7xl">

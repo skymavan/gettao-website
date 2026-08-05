@@ -1,11 +1,11 @@
 import { ArrowUpRight } from "lucide-react";
-import Image from "next/image";
 
 import { ClosingCta } from "@/components/closing-cta";
 import { ContactForm } from "@/components/contact-form";
 import { FaqSection } from "@/components/faq-section";
 import { HeroCopy } from "@/components/hero-copy";
 import { HeroVisual } from "@/components/hero-visual";
+import { Logo } from "@/components/logo";
 import { ProcessList } from "@/components/process-list";
 import { PrincipleList } from "@/components/principle-list";
 import { SiteHeader } from "@/components/site-header";
@@ -21,7 +21,6 @@ import {
   resources,
   footerLinks,
 } from "@/content/site";
-import { withBasePath } from "@/lib/base-path";
 import { createStructuredData } from "@/lib/structured-data";
 
 export default function Home() {
@@ -264,13 +263,7 @@ export default function Home() {
         <Reveal className="site-shell footer-grid">
           <div className="footer-brand-wrap">
             <a href="#top" className="footer-brand" aria-label="Gettao Home">
-              <Image
-                src={withBasePath("/logo-footer.png")}
-                alt="Gettao"
-                width={160}
-                height={80}
-                className="h-12 w-auto"
-              />
+              <Logo />
             </a>
             <p>Enterprise AI for Financial Services</p>
             <div className="footer-socials" aria-label="Social links">
