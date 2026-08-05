@@ -36,11 +36,30 @@ test("uses the Gettao identity with light theme and logo images", async ({ page 
   await expect(page.locator("html")).toHaveAttribute("color-scheme", "light");
   const headerLogo = page.locator(".site-header img");
   await expect(headerLogo).toBeVisible();
-  await expect(headerLogo).toHaveAttribute("src", /logo-header\.png/);
+  await expect(headerLogo).toHaveAttribute("src", /logo\.png/);
   const footerLogo = page.locator(".footer-brand img");
   await expect(footerLogo).toBeVisible();
-  await expect(footerLogo).toHaveAttribute("src", /logo-footer\.png/);
+  await expect(footerLogo).toHaveAttribute("src", /logo\.png/);
 });
+
+const footerLogoRoutes = [
+  "/",
+  "/solutions/mortgage/",
+  "/solutions/banking/",
+  "/solutions/insurance/",
+  "/platform/",
+];
+
+for (const route of footerLogoRoutes) {
+  test(`footer logo renders on ${route}`, async ({ page }) => {
+    await page.goto(route);
+    const footerLogo = page.locator(".footer-brand img");
+    await expect(footerLogo).toBeVisible();
+    await expect(footerLogo).toHaveAttribute("src", /logo\.png/);
+    await expect(footerLogo).toHaveAttribute("width", "1536");
+    await expect(footerLogo).toHaveAttribute("height", "1024");
+  });
+}
 
 test("mobile navigation exposes every section", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name === "desktop", "Desktop uses inline navigation");

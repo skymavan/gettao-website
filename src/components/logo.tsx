@@ -13,7 +13,7 @@ export function Logo({
 }: LogoProps) {
   return (
     <Image
-      src={withBasePath("/gettaologo.png")}
+      src={withBasePath("/logo.png")}
       alt="Gettao"
       width={1536}
       height={1024}

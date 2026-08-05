@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { ClosingCta } from "@/components/closing-cta";
 import { ContactForm } from "@/components/contact-form";
 import { FaqSection } from "@/components/faq-section";
+import { Logo } from "@/components/logo";
 import { SiteHeader } from "@/components/site-header";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/reveal";
 import { siteConfig, footerLinks } from "@/content/site";
@@ -514,8 +515,8 @@ export default function PlatformPage() {
       <footer className="site-footer">
         <Reveal className="site-shell footer-grid">
           <div className="footer-brand-wrap">
-            <a href="#top" className="footer-brand">
-              Gettao
+            <a href="#top" className="footer-brand" aria-label="Gettao Home">
+              <Logo />
             </a>
             <p>Enterprise AI for Financial Services</p>
             <div className="footer-socials" aria-label="Social links">

@@ -88,11 +88,11 @@ describe("Home", () => {
 
     const headerLogo = document.querySelector(".site-header img") as HTMLImageElement;
     expect(headerLogo).not.toBeNull();
-    expect(headerLogo.src).toContain("gettaologo.png");
+    expect(headerLogo.src).toContain("logo.png");
 
     const footerLogo = document.querySelector(".footer-brand img") as HTMLImageElement;
     expect(footerLogo).not.toBeNull();
-    expect(footerLogo.src).toContain("gettaologo.png");
+    expect(footerLogo.src).toContain("logo.png");
   });
 
   it("keeps the footer logo identical to the navbar logo", () => {

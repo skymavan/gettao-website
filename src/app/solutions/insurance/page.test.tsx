@@ -64,4 +64,19 @@ describe("InsurancePage", () => {
       screen.getByRole("heading", { level: 3, name: "Compliance Automation" }),
     ).toBeVisible();
   });
+
+  it("renders the shared footer logo identical to the navbar logo", () => {
+    render(<InsurancePage />);
+
+    const headerLogo = document.querySelector(".site-header img") as HTMLImageElement;
+    const footerLogo = document.querySelector(".footer-brand img") as HTMLImageElement;
+
+    expect(headerLogo).not.toBeNull();
+    expect(footerLogo).not.toBeNull();
+    expect(footerLogo.getAttribute("src")).toContain("logo.png");
+    expect(footerLogo.getAttribute("src")).toBe(headerLogo.getAttribute("src"));
+    expect(footerLogo.getAttribute("width")).toBe("1536");
+    expect(footerLogo.getAttribute("height")).toBe("1024");
+    expect(footerLogo.className).toContain("h-[7.5rem]");
+  });
 });
