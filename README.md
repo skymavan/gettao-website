@@ -37,11 +37,11 @@ The production export is written to `out/`.
 The workflow in `.github/workflows/deploy-pages.yml` validates and deploys pushes to `main`. In repository settings:
 
 1. Set Pages source to **GitHub Actions**.
-2. For `gettao.io`, set the repository variable `PAGES_CUSTOM_DOMAIN=true`, then configure the domain in Pages settings after the first successful deployment.
+2. For `www.gettao.ai`, set the repository variable `PAGES_CUSTOM_DOMAIN=true`, then configure `www.gettao.ai` as the custom domain in Pages settings. With the apex DNS records configured too, GitHub redirects `gettao.ai` to the canonical `www` address.
 3. For a repository-path deployment, leave that variable unset. The build derives `/<repository-name>` from `GITHUB_REPOSITORY`.
 4. `NEXT_PUBLIC_BASE_PATH` can override the derived path for a nonstandard deployment.
 
-Add and verify the DNS records GitHub shows for the custom domain.
+Add and verify the DNS records GitHub shows for the custom domain. Because this site deploys with GitHub Actions, a repository `CNAME` file is not required.
 
 ## Design context
 
