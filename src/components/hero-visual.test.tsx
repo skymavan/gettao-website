@@ -18,20 +18,20 @@ describe("HeroVisual", () => {
     const sources = Array.from(container.querySelectorAll(".hero-picture source"));
     expect(sources).toHaveLength(2);
     expect(sources[0]?.getAttribute("srcset")).toContain(
-      "gettao-hero-workflow-v2-desktop.avif",
+      "gettao-hero-office-v3-desktop.avif",
     );
     expect(sources[0]?.getAttribute("srcset")).toContain(
-      "gettao-hero-workflow-v2-mobile.avif",
+      "gettao-hero-office-v3-mobile.avif",
     );
     expect(sources[1]?.getAttribute("srcset")).toContain(
-      "gettao-hero-workflow-v2-desktop.webp",
+      "gettao-hero-office-v3-desktop.webp",
     );
     expect(sources[1]?.getAttribute("srcset")).toContain(
-      "gettao-hero-workflow-v2-mobile.webp",
+      "gettao-hero-office-v3-mobile.webp",
     );
 
     const img = container.querySelector(".hero-image") as HTMLImageElement;
-    expect(img.src).toContain("gettao-hero-workflow-v2-desktop.webp");
+    expect(img.src).toContain("gettao-hero-office-v3-desktop.webp");
     expect(img.alt).toBe("");
     expect(img.width).toBe(1440);
     expect(img.height).toBe(1080);

@@ -1,19 +1,23 @@
 # GetTAO Hero Image Implementation Plan
 
+## Direction Revision
+
+The user selected the photorealistic office approach after reviewing the initial 3D result. This revision supersedes the 3D prompt and `gettao-hero-workflow-v2-*` delivery filenames in Tasks 1 and 2. The final project-bound set is `gettao-hero-office-v3-*`: a candid operations professional reviews financial documents, supervises an abstract blue workflow, and selects one orange-red approval control. The responsive processing, decorative semantics, test-first source switch, and verification steps remain unchanged.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Generate a polished GetTAO hero illustration, deliver responsive optimized assets, and replace the current placeholder artwork without changing the hero narrative or interaction.
+**Goal:** Generate a candid photorealistic GetTAO hero photograph, deliver responsive optimized assets, and replace the placeholder artwork without changing the hero narrative or interaction.
 
-**Architecture:** The built-in image-generation tool produces one versioned master raster. Sharp derives same-ratio desktop and mobile renditions in PNG, WebP, and AVIF. The existing `HeroVisual` picture element references the new versioned files through `withBasePath`, preserving decorative semantics and pointer-depth behavior.
+**Architecture:** The built-in image-generation tool produces one versioned photorealistic master raster. Sharp derives same-ratio desktop and mobile renditions in PNG, WebP, and AVIF. The existing `HeroVisual` picture element references the new versioned files through `withBasePath`, preserving decorative semantics and pointer-depth behavior.
 
 **Tech Stack:** Built-in image generation, Sharp 0.35, Next.js 16, React 19, TypeScript, Vitest, Playwright.
 
 ## Global Constraints
 
-- Use a refined 3D editorial illustration on an off-white or very pale neutral backdrop.
-- GetTAO blue `#01629E` identifies system activity; orange-red `#FF5134` appears once as the human approval checkpoint.
-- Include financial documents moving through a compact autonomous workflow and emerging organized or approved.
-- Include no logos, legible document copy, fabricated metrics, dashboard screens, purple or violet, dark control-room styling, generic humanoid robots, office stock-photo cues, decorative gradients, watermarks, or visual clutter.
+- Use high-end photorealistic editorial photography in a bright, believable office.
+- GetTAO blue `#01629E` identifies the abstract workflow; orange-red `#FF5134` appears once as the human approval control.
+- Include one candid financial operations professional reviewing documents and supervising the workflow.
+- Include no logos, legible document copy, fabricated metrics, chart-heavy dashboards, purple or violet, dark control-room styling, robots, posed teams, handshakes, call-center cues, holograms, watermarks, or visual clutter.
 - Keep the important workflow centered and legible in a 4:3 desktop composition and a same-ratio mobile rendition.
 - Preserve the existing empty `alt`, `aria-hidden="true"`, pointer-depth interaction, base-path handling, and reduced-motion behavior.
 - Validate at 320, 768, 1024, and 1440 pixels.

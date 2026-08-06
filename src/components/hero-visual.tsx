@@ -52,17 +52,17 @@ export function HeroVisual() {
       <picture className="hero-picture">
         <source
           type="image/avif"
-          srcSet={`${withBasePath("/gettao-hero-workflow-v2-desktop.avif")} 1440w, ${withBasePath("/gettao-hero-workflow-v2-mobile.avif")} 768w`}
+          srcSet={`${withBasePath("/gettao-hero-office-v3-desktop.avif")} 1440w, ${withBasePath("/gettao-hero-office-v3-mobile.avif")} 768w`}
           sizes="(min-width: 768px) 50vw, 100vw"
         />
         <source
           type="image/webp"
-          srcSet={`${withBasePath("/gettao-hero-workflow-v2-desktop.webp")} 1440w, ${withBasePath("/gettao-hero-workflow-v2-mobile.webp")} 768w`}
+          srcSet={`${withBasePath("/gettao-hero-office-v3-desktop.webp")} 1440w, ${withBasePath("/gettao-hero-office-v3-mobile.webp")} 768w`}
           sizes="(min-width: 768px) 50vw, 100vw"
         />
         <img
           className="hero-image"
-          src={withBasePath("/gettao-hero-workflow-v2-desktop.webp")}
+          src={withBasePath("/gettao-hero-office-v3-desktop.webp")}
           alt=""
           width="1440"
           height="1080"

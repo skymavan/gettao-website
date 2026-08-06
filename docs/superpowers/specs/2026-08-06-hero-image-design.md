@@ -6,20 +6,20 @@ Replace the current placeholder hero illustration with a distinctive, production
 
 ## Approved Direction
 
-Use a polished 3D editorial illustration rather than photorealistic office imagery or an abstract data network. The image should feel precise, light, trustworthy, and operational. It must complement the existing white and pale-surface interface instead of behaving like a separate campaign banner.
+Use a candid, photorealistic editorial office scene. The image should feel precise, light, trustworthy, and operational while avoiding the posed-team conventions of generic consultancy stock photography. It must complement the existing white and pale-surface interface instead of behaving like a separate campaign banner.
 
-The composition will show financial documents and structured data moving through a compact autonomous workflow. GetTAO blue (`#01629E`) identifies system activity. Orange-red (`#FF5134`) appears once, as the human approval checkpoint. The focal workflow should remain clear at the size used in the right-hand hero column.
+The composition will show one financial operations professional candidly reviewing documents beside a monitor that displays an abstract autonomous workflow. GetTAO blue (`#01629E`) identifies system activity. Orange-red (`#FF5134`) appears once, as the approval control the professional is selecting. The person, workflow, and approval action should remain clear at the size used in the right-hand hero column.
 
 ## Visual System
 
-- Style: refined 3D editorial illustration with restrained depth, crisp geometry, and tactile paper or matte-machine surfaces.
-- Backdrop: off-white or very pale neutral, visually compatible with the hero's `surface` background.
-- Subject: financial documents entering a connected automation system, passing a single approval control, and emerging organized or approved.
+- Style: high-end photorealistic editorial corporate photography with natural texture and documentary authenticity.
+- Backdrop: bright contemporary office with off-white and pale gray surfaces, soft daylight, and restrained blue details.
+- Subject: one focused operations professional supervising an abstract document workflow and selecting a single approval control.
 - Composition: landscape master with the important workflow concentrated near the center so it remains useful in a narrower mobile crop.
-- Palette: white, pale neutral, GetTAO blue, and one controlled orange-red accent.
-- Lighting: soft studio illumination with gentle contact shadows; no dramatic glow or glossy spectacle.
+- Palette: neutral whites and warm grays, GetTAO blue, and one controlled orange-red accent.
+- Lighting: soft natural window light with restrained depth of field; no dramatic glow or cinematic spectacle.
 - Text: none.
-- Avoid: logos, legible document copy, fabricated metrics, dashboard screens, purple or violet, dark control-room styling, generic humanoid robots, office stock-photo cues, decorative gradients, watermarks, and visual clutter.
+- Avoid: logos, legible document copy, fabricated metrics, chart-heavy dashboards, purple or violet, dark control-room styling, robots, handshakes, posed teams, call-center cues, holograms, watermarks, and visual clutter.
 
 ## Responsive Asset Pipeline
 
@@ -35,7 +35,7 @@ Keep the existing pointer-depth interaction and reduced-motion behavior. Only ad
 
 ## Failure Handling
 
-If the first generation introduces prohibited text, fake metrics, a robot character, excessive gradients, or weakens the orange approval focal point, discard it and make one targeted prompt revision. If the mobile crop cannot retain the workflow story, use a separately composed mobile derivative rather than shrinking the full desktop scene into illegibility.
+If the generation introduces readable text, fake metrics, a robot character, a posed stock-photo composition, or weakens the orange approval focal point, discard it and make one targeted prompt revision. If the mobile crop cannot retain the professional, workflow, and approval action, use a separately composed mobile derivative rather than shrinking the full desktop scene into illegibility.
 
 ## Testing and Verification
 
@@ -48,4 +48,4 @@ If the first generation introduces prohibited text, fake metrics, a robot charac
 
 ## Acceptance Criteria
 
-The final hero must communicate automated financial workflow plus human control without relying on embedded text. It must look native to GetTAO's blue-orange, light-theme design; remain clear on desktop and mobile; avoid the product's anti-references; preserve accessibility and reduced-motion behavior; and pass the project's tests, lint, and production build.
+The final hero photograph must communicate automated financial workflow plus human control without relying on readable embedded text. It must feel candid rather than like posed consultancy stock photography, look native to GetTAO's blue-orange light-theme design, remain clear on desktop and mobile, preserve accessibility and reduced-motion behavior, and pass the project's tests, lint, and production build.
