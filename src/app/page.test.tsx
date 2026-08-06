@@ -75,12 +75,12 @@ describe("Home", () => {
 
     const heroImg = document.querySelector(".hero-image") as HTMLImageElement;
     expect(heroImg).not.toBeNull();
-    expect(heroImg.src).toContain("gettao-hero-desktop.webp");
+    expect(heroImg.src).toContain("gettao-hero-workflow-v2-desktop.webp");
 
     const avifSources = document.querySelectorAll('source[type="image/avif"]');
     expect(avifSources.length).toBeGreaterThanOrEqual(1);
     const lastAvif = avifSources[avifSources.length - 1] as HTMLSourceElement;
-    expect(lastAvif.srcset).toContain("gettao-hero-desktop.avif");
+    expect(lastAvif.srcset).toContain("gettao-hero-workflow-v2-desktop.avif");
   });
 
   it("renders the header and footer logo images", () => {
