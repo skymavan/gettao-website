@@ -113,11 +113,11 @@ test("reduced motion keeps the local static hero and removes continuous animatio
 test("motion-capable visitors receive responsive local hero artwork", async ({ page }) => {
   await expect(page.locator('.hero-visual source[type="image/avif"]').first()).toHaveAttribute(
     "srcset",
-    /gettao-hero-desktop\.avif/,
+    /gettao-hero-workflow-v2-desktop\.avif/,
   );
   await expect(page.locator(".hero-image")).toHaveAttribute(
     "src",
-    /gettao-hero-desktop\.webp$/,
+    /gettao-hero-workflow-v2-desktop\.webp$/,
   );
   await expect(page.locator("video")).toHaveCount(0);
 });
