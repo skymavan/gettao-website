@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import { ConsultationForm } from "@/components/consultation-form";
 import { ContactForm } from "@/components/contact-form";
 import { Reveal } from "@/components/motion/reveal";
+import { Photo } from "@/components/photo";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/content/site";
@@ -40,6 +41,12 @@ export function ContactIntro({ isConsultation = false }: { isConsultation?: bool
       <a className="access-email" href={`mailto:${siteConfig.email}`}>
         {siteConfig.email} <ArrowUpRight aria-hidden="true" />
       </a>
+      <Photo
+        name="contact"
+        ratio="4 / 3"
+        className="contact-photo"
+        sizes="(min-width: 1024px) 35vw, 100vw"
+      />
     </Reveal>
   );
 }

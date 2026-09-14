@@ -5,6 +5,7 @@ import { ClosingCta } from "@/components/closing-cta";
 import { ContactForm } from "@/components/contact-form";
 import { FaqSection } from "@/components/faq-section";
 import { Button } from "@/components/ui/button";
+import { Photo } from "@/components/photo";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/reveal";
@@ -229,18 +230,26 @@ export default function InsurancePage() {
                 </Button>
               </div>
             </Reveal>
+            <Photo
+              name="insurance"
+              ratio="21 / 9"
+              position="center"
+              className="subpage-hero-photo"
+              sizes="(min-width: 1400px) 1400px, 100vw"
+              priority
+            />
           </div>
         </section>
 
         {/* Overview */}
-        <section className="section-pad border-y border-border bg-muted/30" aria-labelledby="overview-title">
+        <section className="section-pad bg-muted/30" aria-labelledby="overview-title">
           <div className="site-shell">
             <Reveal>
               <p className="eyebrow">Overview</p>
               <h2 id="overview-title" className="mb-6">
                 AI Built for the Modern Insurance Industry
               </h2>
-              <div className="mx-auto max-w-4xl space-y-4 text-muted-foreground">
+              <div className="max-w-3xl space-y-4 text-muted-foreground">
                 <p>
                   Today&apos;s insurers need to process information faster while maintaining accuracy, security,
                   and compliance.
@@ -278,7 +287,7 @@ export default function InsurancePage() {
         </section>
 
         {/* Solutions */}
-        <section id="solutions" className="section-pad border-y border-border bg-muted/30" aria-labelledby="solutions-title">
+        <section id="solutions" className="section-pad bg-muted/30" aria-labelledby="solutions-title">
           <div className="site-shell">
             <Reveal>
               <p className="eyebrow">Solutions</p>
@@ -322,7 +331,7 @@ export default function InsurancePage() {
         </section>
 
         {/* Use Cases */}
-        <section className="section-pad border-y border-border bg-muted/30" aria-labelledby="usecases-title">
+        <section className="section-pad bg-muted/30" aria-labelledby="usecases-title">
           <div className="site-shell">
             <Reveal>
               <p className="eyebrow">Use Cases</p>
@@ -365,7 +374,7 @@ export default function InsurancePage() {
         </section>
 
         {/* Why Gettao */}
-        <section className="section-pad border-y border-border bg-muted/30" aria-labelledby="why-title">
+        <section className="section-pad bg-muted/30" aria-labelledby="why-title">
           <div className="site-shell">
             <Reveal>
               <p className="eyebrow">Why Gettao</p>
@@ -408,7 +417,7 @@ export default function InsurancePage() {
         </section>
 
         {/* FAQ */}
-        <section id="faq" className="section-pad border-y border-border bg-muted/30" aria-labelledby="faq-title">
+        <section id="faq" className="section-pad bg-muted/30" aria-labelledby="faq-title">
           <div className="site-shell faq-grid">
             <Reveal>
               <div>

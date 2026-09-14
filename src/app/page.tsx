@@ -6,6 +6,7 @@ import { FaqSection } from "@/components/faq-section";
 import { HeroCopy } from "@/components/hero-copy";
 import { HeroVisual } from "@/components/hero-visual";
 import { ProcessList } from "@/components/process-list";
+import { Photo } from "@/components/photo";
 import { PrincipleList } from "@/components/principle-list";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -13,6 +14,7 @@ import { Reveal } from "@/components/motion/reveal";
 import {
   siteConfig,
   industries,
+  industryNavItems,
   platformFeatures,
   whyGettao,
   challenges,
@@ -20,6 +22,7 @@ import {
   security,
   resources,
 } from "@/content/site";
+import { internalHref } from "@/lib/base-path";
 import { createStructuredData } from "@/lib/structured-data";
 
 export default function Home() {
@@ -43,7 +46,7 @@ export default function Home() {
         </section>
 
         {/* Who we serve */}
-        <section className="section-pad border-b border-border bg-muted/30" aria-labelledby="serve-title">
+        <section className="section-pad bg-muted/30" aria-labelledby="serve-title">
           <div className="site-shell text-center">
             <Reveal>
               <p className="eyebrow justify-center">Who we serve</p>
@@ -102,7 +105,7 @@ export default function Home() {
         </section>
 
         {/* Challenges */}
-        <section id="challenges" className="section-pad border-y border-border" aria-labelledby="challenges-title">
+        <section id="challenges" className="section-pad" aria-labelledby="challenges-title">
           <div className="site-shell">
             <Reveal>
               <SectionHeading
@@ -112,13 +115,16 @@ export default function Home() {
                 id="challenges-title"
               />
             </Reveal>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {challenges.items.map((item) => (
-                <div key={item} className="flex items-start gap-3 rounded-lg border border-border bg-background p-4">
-                  <span className="mt-1.5 size-2 shrink-0 rounded-full bg-accent" />
-                  <span className="text-sm font-medium">{item}</span>
-                </div>
-              ))}
+            <div className="media-split">
+              <div className="grid content-start gap-4 sm:grid-cols-2">
+                {challenges.items.map((item) => (
+                  <div key={item} className="flex items-start gap-3 rounded-lg border border-border bg-background p-4">
+                    <span className="mt-1.5 size-2 shrink-0 rounded-full bg-accent" />
+                    <span className="text-sm font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <Photo name="review" ratio="4 / 3" className="media-split-photo" sizes="(min-width: 1024px) 40vw, 100vw" />
             </div>
           </div>
         </section>
@@ -149,12 +155,15 @@ export default function Home() {
                 id="why-title"
               />
             </Reveal>
-            <PrincipleList items={whyGettao} />
+            <div className="media-split media-split-reverse">
+              <Photo name="team" ratio="4 / 3" className="media-split-photo" sizes="(min-width: 1024px) 40vw, 100vw" />
+              <PrincipleList items={whyGettao} />
+            </div>
           </div>
         </section>
 
         {/* Business Impact */}
-        <section id="impact" className="section-pad border-y border-border" aria-labelledby="impact-title">
+        <section id="impact" className="section-pad" aria-labelledby="impact-title">
           <div className="site-shell">
             <Reveal>
               <SectionHeading
@@ -185,13 +194,16 @@ export default function Home() {
                 id="security-title"
               />
             </Reveal>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {security.features.map((feature) => (
-                <div key={feature} className="flex items-start gap-3 rounded-lg border border-border bg-muted/30 p-4">
-                  <span className="mt-1.5 size-2 shrink-0 rounded-full bg-primary" />
-                  <span className="text-sm font-medium">{feature}</span>
-                </div>
-              ))}
+            <div className="media-split">
+              <div className="grid content-start gap-4 sm:grid-cols-2">
+                {security.features.map((feature) => (
+                  <div key={feature} className="flex items-start gap-3 rounded-lg border border-border bg-muted/30 p-4">
+                    <span className="mt-1.5 size-2 shrink-0 rounded-full bg-primary" />
+                    <span className="text-sm font-medium">{feature}</span>
+                  </div>
+                ))}
+              </div>
+              <Photo name="security" ratio="4 / 3" className="media-split-photo" position="center 30%" sizes="(min-width: 1024px) 40vw, 100vw" />
             </div>
           </div>
         </section>
@@ -269,18 +281,27 @@ export default function Home() {
 }
 
 function IndustryCard({ industry }: { industry: typeof industries[number] }) {
+  const href = industryNavItems.find((item) => item.id === industry.id)?.href ?? "/";
   return (
-    <article className="rounded-lg border border-border bg-background p-6">
-      <h3 className="mb-3 text-xl font-semibold text-primary">{industry.title}</h3>
-      <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{industry.description}</p>
-      <ul className="space-y-2">
-        {industry.useCases.map((useCase) => (
-          <li key={useCase} className="flex items-center gap-2 text-sm">
-            <span className="size-1.5 shrink-0 rounded-full bg-accent" />
-            {useCase}
-          </li>
-        ))}
-      </ul>
+    <article className="industry-card">
+      <Photo
+        name={industry.id as "mortgage" | "banking" | "insurance"}
+        ratio="4 / 3"
+        className="industry-card-photo"
+        sizes="(min-width: 768px) 33vw, 100vw"
+      />
+      <div className="industry-card-body">
+        <h3>{industry.title}</h3>
+        <p>{industry.description}</p>
+        <ul>
+          {industry.useCases.map((useCase) => (
+            <li key={useCase}>{useCase}</li>
+          ))}
+        </ul>
+        <a className="text-link" href={internalHref(href)}>
+          Explore {industry.title} AI <ArrowUpRight aria-hidden="true" />
+        </a>
+      </div>
     </article>
   );
 }
