@@ -1,69 +1,53 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "motion/react";
+import { motion, type Variants } from "motion/react";
+import { useRef } from "react";
 
-import { EASE_OUT, VIEWPORT_ONCE, fadeRise } from "@/lib/motion";
 import { howItWorks } from "@/content/site";
+import { EASE_OUT, HIDE_INSTANTLY, fadeRise, staggerParentFor } from "@/lib/motion";
+import { useScrollReveal } from "@/lib/use-scroll-reveal";
 
-const parent: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.11, delayChildren: 0.06 } },
-};
-
+/**
+ * The rail animates a unitless `--rail-progress` custom property (0 → 1).
+ * CSS maps it to `scaleX` on desktop and `scaleY` on the stacked mobile layout,
+ * defaulting to 1 so the rail is complete without JS.
+ */
 const railVariant: Variants = {
-  hidden: { scaleX: 0 },
+  hidden: { "--rail-progress": 0, transition: HIDE_INSTANTLY },
   visible: {
-    scaleX: 1,
-    transition: { duration: 1.6, ease: EASE_OUT, delay: 0.15 },
+    "--rail-progress": 1,
+    transition: { duration: 1, ease: EASE_OUT, delay: 0.1 },
   },
 };
 
-export function ProcessList() {
-  const reduce = useReducedMotion();
+const parent = staggerParentFor(howItWorks.length);
 
-  if (reduce) {
-    return (
-      <ol className="process-list" aria-label="Delivery process">
-        {howItWorks.map((step) => (
-          <li
-            key={step.title}
-            className={step.human ? "process-stage-human" : undefined}
-          >
-            <span className="process-number">{step.index}</span>
-            <div>
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
-    );
-  }
+export function ProcessList() {
+  const ref = useRef<HTMLDivElement>(null);
+  const phase = useScrollReveal(ref);
+  const target = phase === "hidden" ? "hidden" : "visible";
 
   return (
-    <div className="process-list-wrap">
+    <div ref={ref} className="process-list-wrap">
       <motion.div
         className="process-progress-rail"
         aria-hidden="true"
         variants={railVariant}
-        initial="hidden"
-        whileInView="visible"
-        viewport={VIEWPORT_ONCE}
+        initial={false}
+        animate={target}
       />
       <motion.ol
         className="process-list"
         aria-label="Delivery process"
         variants={parent}
-        initial="hidden"
-        whileInView="visible"
-        viewport={VIEWPORT_ONCE}
+        initial={false}
+        animate={target}
       >
         {howItWorks.map((step) => (
           <motion.li
             key={step.title}
             className={step.human ? "process-stage-human" : undefined}
             variants={fadeRise}
-            transition={{ duration: 0.75, ease: EASE_OUT }}
           >
             <span className="process-number">{step.index}</span>
             <div>

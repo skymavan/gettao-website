@@ -5,9 +5,9 @@ import { ContactForm } from "@/components/contact-form";
 import { FaqSection } from "@/components/faq-section";
 import { HeroCopy } from "@/components/hero-copy";
 import { HeroVisual } from "@/components/hero-visual";
-import { Logo } from "@/components/logo";
 import { ProcessList } from "@/components/process-list";
 import { PrincipleList } from "@/components/principle-list";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Reveal } from "@/components/motion/reveal";
 import {
@@ -19,10 +19,8 @@ import {
   businessImpact,
   security,
   resources,
-  footerLinks,
 } from "@/content/site";
 import { createStructuredData } from "@/lib/structured-data";
-import { internalHref } from "@/lib/base-path";
 
 export default function Home() {
   const schema = JSON.stringify(createStructuredData()).replace(/</g, "\\u003c");
@@ -44,12 +42,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Trusted By */}
-        <section className="section-pad border-b border-border bg-muted/30" aria-label="Trusted by the financial industry">
+        {/* Who we serve */}
+        <section className="section-pad border-b border-border bg-muted/30" aria-labelledby="serve-title">
           <div className="site-shell text-center">
             <Reveal>
-              <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-primary">Trusted By</p>
-              <h2 className="mb-4 text-center">Built for the Financial Industry</h2>
+              <p className="eyebrow justify-center">Who we serve</p>
+              <h2 id="serve-title" className="mb-4 text-center">Built for the Financial Industry</h2>
               <p className="mx-auto mb-8 max-w-3xl text-muted-foreground">
                 Gettao is purpose-built to support organizations operating in highly regulated financial environments.
                 Our AI platform empowers organizations across the financial ecosystem to automate operations, improve accuracy, reduce costs, and deliver exceptional customer experiences.
@@ -147,7 +145,7 @@ export default function Home() {
               <SectionHeading
                 eyebrow="Why Gettao"
                 title="Why Financial Institutions Choose Gettao"
-                description=""
+                description="Purpose-built for regulated financial work, with people kept in control of every consequential decision."
                 id="why-title"
               />
             </Reveal>
@@ -209,13 +207,13 @@ export default function Home() {
                 id="resources-title"
               />
             </Reveal>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <ul className="grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-4">
               {resources.items.map((item) => (
-                <div key={item} className="rounded-lg border border-border bg-background p-5 text-center font-medium transition-colors hover:border-accent hover:text-accent">
+                <li key={item} className="rounded-lg border border-border bg-background p-5 text-center font-medium">
                   {item}
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </section>
 
@@ -260,68 +258,7 @@ export default function Home() {
         <ClosingCta accessUrl={accessUrl} />
       </main>
 
-      <footer className="site-footer">
-        <Reveal className="site-shell footer-grid">
-          <div className="footer-brand-wrap">
-            <a href="#top" className="footer-brand" aria-label="Gettao Home">
-              <Logo />
-            </a>
-            <p>Enterprise AI for Financial Services</p>
-            <div className="footer-socials" aria-label="Social links">
-              {siteConfig.socialLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={link.label}
-                  title={link.label}
-                >
-                  {link.icon === "linkedin" ? (
-                    <LinkedInIcon />
-                  ) : link.icon === "github" ? (
-                    <GitHubIcon />
-                  ) : (
-                    <XIcon />
-                  )}
-                </a>
-              ))}
-            </div>
-          </div>
-          <nav aria-label="Solutions" className="footer-nav">
-            <p className="footer-heading">Solutions</p>
-            {footerLinks.solutions.map((link) => (
-              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
-            ))}
-          </nav>
-          <nav aria-label="Platform" className="footer-nav">
-            <p className="footer-heading">Platform</p>
-            {footerLinks.platform.map((link) => (
-              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
-            ))}
-          </nav>
-          <nav aria-label="Resources" className="footer-nav">
-            <p className="footer-heading">Resources</p>
-            {footerLinks.resources.map((link) => (
-              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
-            ))}
-          </nav>
-          <nav aria-label="Company" className="footer-nav">
-            <p className="footer-heading">Company</p>
-            {footerLinks.company.map((link) => (
-              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
-            ))}
-          </nav>
-          <div className="footer-meta">
-            <p className="footer-heading">Get in touch</p>
-            <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
-            <span>Enterprise AI for Financial Services</span>
-          </div>
-          <div className="footer-legal">
-            <span>&copy; 2026 Gettao. All rights reserved.</span>
-          </div>
-        </Reveal>
-      </footer>
+      <SiteFooter />
 
       <script
         type="application/ld+json"
@@ -334,7 +271,7 @@ export default function Home() {
 function IndustryCard({ industry }: { industry: typeof industries[number] }) {
   return (
     <article className="rounded-lg border border-border bg-background p-6">
-      <h3 className="mb-3 text-xl font-bold text-primary">{industry.title}</h3>
+      <h3 className="mb-3 text-xl font-semibold text-primary">{industry.title}</h3>
       <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{industry.description}</p>
       <ul className="space-y-2">
         {industry.useCases.map((useCase) => (
@@ -351,44 +288,14 @@ function IndustryCard({ industry }: { industry: typeof industries[number] }) {
 function PlatformCard({ feature }: { feature: typeof platformFeatures[number] }) {
   return (
     <article className="rounded-lg border border-border bg-background p-6">
-      <h3 className="mb-3 text-lg font-bold text-primary">{feature.title}</h3>
+      <h3 className="mb-3 text-lg font-semibold text-primary">{feature.title}</h3>
       <p className="text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
     </article>
   );
 }
 
-function LinkedInIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path
-        fill="currentColor"
-        d="M20.45 20.45h-3.56v-5.56c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.65H9.35V9h3.41v1.56h.05c.48-.9 1.66-1.85 3.42-1.85 3.66 0 4.33 2.41 4.33 5.54v6.2ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM3.56 20.45h3.56V9H3.56v11.45Z"
-      />
-    </svg>
-  );
-}
 
-function XIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path
-        fill="currentColor"
-        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644Z"
-      />
-    </svg>
-  );
-}
 
-function GitHubIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path
-        fill="currentColor"
-        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.339-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.31.678.921.678 1.856 0 1.34-.012 2.424-.012 2.752 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.523 2 12 2Z"
-      />
-    </svg>
-  );
-}
 
 function SectionHeading({
   eyebrow,

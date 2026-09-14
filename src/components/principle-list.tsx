@@ -1,13 +1,10 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "motion/react";
+import { motion } from "motion/react";
+import { useRef } from "react";
 
-import { EASE_OUT, VIEWPORT_ONCE, fadeRise } from "@/lib/motion";
-
-const parent: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.11, delayChildren: 0.06 } },
-};
+import { fadeRise, staggerParentFor } from "@/lib/motion";
+import { useScrollReveal } from "@/lib/use-scroll-reveal";
 
 type Item = { title: string; description: string };
 
@@ -18,36 +15,20 @@ export function PrincipleList({
   items: ReadonlyArray<Item>;
   ariaLabel?: string;
 }) {
-  const reduce = useReducedMotion();
-
-  if (reduce) {
-    return (
-      <div className="principle-list" {...(ariaLabel ? { "aria-label": ariaLabel } : {})}>
-        {items.map((item) => (
-          <article key={item.title}>
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-          </article>
-        ))}
-      </div>
-    );
-  }
+  const ref = useRef<HTMLDivElement>(null);
+  const phase = useScrollReveal(ref);
 
   return (
     <motion.div
+      ref={ref}
       className="principle-list"
-      variants={parent}
-      initial="hidden"
-      whileInView="visible"
-      viewport={VIEWPORT_ONCE}
+      variants={staggerParentFor(items.length)}
+      initial={false}
+      animate={phase === "hidden" ? "hidden" : "visible"}
       {...(ariaLabel ? { "aria-label": ariaLabel } : {})}
     >
       {items.map((item) => (
-        <motion.article
-          key={item.title}
-          variants={fadeRise}
-          transition={{ duration: 0.75, ease: EASE_OUT }}
-        >
+        <motion.article key={item.title} variants={fadeRise}>
           <h3>{item.title}</h3>
           <p>{item.description}</p>
         </motion.article>

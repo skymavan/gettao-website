@@ -1,9 +1,16 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
-import type { ReactNode } from "react";
+import { motion } from "motion/react";
+import { Children, useRef, type ReactNode } from "react";
 
-import { EASE_OUT, VIEWPORT_ONCE, fadeRise, staggerParent } from "@/lib/motion";
+import {
+  EASE_OUT,
+  HIDE_INSTANTLY,
+  REVEAL_DURATION,
+  fadeRise,
+  staggerParentFor,
+} from "@/lib/motion";
+import { useScrollReveal } from "@/lib/use-scroll-reveal";
 
 type RevealProps = {
   children: ReactNode;
@@ -13,19 +20,23 @@ type RevealProps = {
 };
 
 export function Reveal({ children, className, delay = 0, y = 26 }: RevealProps) {
-  const reduce = useReducedMotion();
-
-  if (reduce) {
-    return <div className={className}>{children}</div>;
-  }
+  const ref = useRef<HTMLDivElement>(null);
+  const phase = useScrollReveal(ref);
 
   return (
     <motion.div
+      ref={ref}
       className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={VIEWPORT_ONCE}
-      transition={{ duration: 0.85, ease: EASE_OUT, delay }}
+      initial={false}
+      animate={
+        phase === "hidden"
+          ? { opacity: 0, y, transition: HIDE_INSTANTLY }
+          : {
+              opacity: 1,
+              y: 0,
+              transition: { duration: REVEAL_DURATION, ease: EASE_OUT, delay },
+            }
+      }
     >
       {children}
     </motion.div>
@@ -39,25 +50,16 @@ type StaggerGroupProps = {
 };
 
 export function StaggerGroup({ children, className, delay = 0 }: StaggerGroupProps) {
-  const reduce = useReducedMotion();
-
-  if (reduce) {
-    return <div className={className}>{children}</div>;
-  }
+  const ref = useRef<HTMLDivElement>(null);
+  const phase = useScrollReveal(ref);
 
   return (
     <motion.div
+      ref={ref}
       className={className}
-      variants={{
-        ...staggerParent,
-        visible: {
-          ...(staggerParent.visible as object),
-          transition: { staggerChildren: 0.13, delayChildren: 0.08 + delay },
-        },
-      }}
-      initial="hidden"
-      whileInView="visible"
-      viewport={VIEWPORT_ONCE}
+      variants={staggerParentFor(Children.count(children), delay)}
+      initial={false}
+      animate={phase === "hidden" ? "hidden" : "visible"}
     >
       {children}
     </motion.div>
@@ -70,12 +72,6 @@ type StaggerItemProps = {
 };
 
 export function StaggerItem({ children, className }: StaggerItemProps) {
-  const reduce = useReducedMotion();
-
-  if (reduce) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
     <motion.div className={className} variants={fadeRise}>
       {children}

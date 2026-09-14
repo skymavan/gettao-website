@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 import { MotionConfig } from "motion/react";
 
 import { siteConfig } from "@/content/site";
+import { withBasePath } from "@/lib/base-path";
 
 import "./globals.css";
 
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
       "Accelerate lending, modernize banking, and transform insurance operations with secure, enterprise-grade AI solutions.",
     images: [
       {
-        url: "/opengraph-image.png",
+        url: withBasePath("/opengraph-image.png"),
         width: 1200,
         height: 630,
         alt: "Gettao — Enterprise AI for Financial Services",
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
     title: "Gettao — Enterprise AI for Financial Services",
     description:
       "AI that powers the future of financial services. Document intelligence, AI agents, workflow automation, and predictive analytics for mortgage, banking, and insurance.",
-    images: ["/opengraph-image.png"],
+    images: [withBasePath("/opengraph-image.png")],
   },
 };
 

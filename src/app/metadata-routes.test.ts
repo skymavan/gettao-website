@@ -9,15 +9,18 @@ describe("metadata routes", () => {
     expect(sitemapDynamic).toBe("force-static");
   });
 
-  it("publishes the canonical homepage in the sitemap", () => {
-    expect(sitemap()).toEqual([
-      expect.objectContaining({
-        url: "https://gettao.ai/",
-        lastModified: expect.any(Date),
-        changeFrequency: "monthly",
-        priority: 1,
-      }),
+  it("publishes every exported page in the sitemap with canonical www URLs", () => {
+    expect(sitemap().map((entry) => entry.url)).toEqual([
+      "https://www.gettao.ai/",
+      "https://www.gettao.ai/platform/",
+      "https://www.gettao.ai/solutions/mortgage/",
+      "https://www.gettao.ai/solutions/banking/",
+      "https://www.gettao.ai/solutions/insurance/",
+      "https://www.gettao.ai/contact/",
     ]);
+    expect(sitemap()[0]).toEqual(
+      expect.objectContaining({ lastModified: expect.any(Date), priority: 1 }),
+    );
   });
 
   it("allows search and AI citation crawlers", () => {
@@ -37,6 +40,7 @@ describe("metadata routes", () => {
         "Bingbot",
       ]),
     );
-    expect(result.sitemap).toBe("https://gettao.ai/sitemap.xml");
+    expect(result.sitemap).toBe("https://www.gettao.ai/sitemap.xml");
+    expect(result.host).toBe("www.gettao.ai");
   });
 });

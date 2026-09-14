@@ -69,7 +69,7 @@ describe("PlatformPage", () => {
       ["X", "https://x.com/gettao"],
       ["GitHub", "https://github.com/gettao"],
     ] as const) {
-      const link = screen.getByRole("link", { name: label });
+      const link = screen.getByRole("link", { name: `${label} (opens in a new tab)` });
       expect(link).toHaveAttribute("href", href);
       expect(link).toHaveAttribute("target", "_blank");
       expect(link).toHaveAttribute("rel", expect.stringContaining("noopener"));
