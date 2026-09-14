@@ -77,7 +77,7 @@ describe("Home", () => {
     expect(heroImg).not.toBeNull();
     expect(heroImg.src).toContain("gettao-hero-office-v3-desktop.webp");
 
-    const avifSources = document.querySelectorAll('source[type="image/avif"]');
+    const avifSources = document.querySelectorAll('.hero-visual source[type="image/avif"]');
     expect(avifSources.length).toBeGreaterThanOrEqual(1);
     const lastAvif = avifSources[avifSources.length - 1] as HTMLSourceElement;
     expect(lastAvif.srcset).toContain("gettao-hero-office-v3-desktop.avif");

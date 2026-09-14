@@ -5,6 +5,7 @@ import { ClosingCta } from "@/components/closing-cta";
 import { ContactForm } from "@/components/contact-form";
 import { FaqSection } from "@/components/faq-section";
 import { Button } from "@/components/ui/button";
+import { Photo } from "@/components/photo";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/reveal";
@@ -219,18 +220,26 @@ export default function PlatformPage() {
                 </Button>
               </div>
             </Reveal>
+            <Photo
+              name="platform"
+              ratio="21 / 9"
+              position="center 40%"
+              className="subpage-hero-photo"
+              sizes="(min-width: 1400px) 1400px, 100vw"
+              priority
+            />
           </div>
         </section>
 
         {/* Overview */}
-        <section className="section-pad border-y border-border bg-muted/30" aria-labelledby="overview-title">
+        <section className="section-pad bg-muted/30" aria-labelledby="overview-title">
           <div className="site-shell">
             <Reveal>
               <p className="eyebrow">Platform Overview</p>
               <h2 id="overview-title" className="mb-6">
                 Enterprise AI Built for Financial Services
               </h2>
-              <div className="mx-auto max-w-4xl space-y-4 text-muted-foreground">
+              <div className="max-w-3xl space-y-4 text-muted-foreground">
                 <p>
                   Financial institutions rely on multiple systems, complex workflows, and strict regulatory
                   requirements. Traditional software often creates disconnected processes, manual work, and
@@ -273,7 +282,7 @@ export default function PlatformPage() {
         </section>
 
         {/* Core Capabilities */}
-        <section id="capabilities" className="section-pad border-y border-border bg-muted/30" aria-labelledby="capabilities-title">
+        <section id="capabilities" className="section-pad bg-muted/30" aria-labelledby="capabilities-title">
           <div className="site-shell">
             <Reveal>
               <p className="eyebrow">Core Platform Capabilities</p>
@@ -331,7 +340,7 @@ export default function PlatformPage() {
         </section>
 
         {/* Security */}
-        <section className="section-pad border-y border-border bg-muted/30" aria-labelledby="platform-security-title">
+        <section className="section-pad bg-muted/30" aria-labelledby="platform-security-title">
           <div className="site-shell">
             <Reveal>
               <p className="eyebrow">Enterprise Security</p>
@@ -390,7 +399,7 @@ export default function PlatformPage() {
         </section>
 
         {/* Deployment */}
-        <section className="section-pad border-y border-border bg-muted/30" aria-labelledby="deployment-title">
+        <section className="section-pad bg-muted/30" aria-labelledby="deployment-title">
           <div className="site-shell">
             <Reveal>
               <p className="eyebrow">Deployment</p>
@@ -446,7 +455,7 @@ export default function PlatformPage() {
         </section>
 
         {/* Comparison */}
-        <section className="section-pad border-y border-border bg-muted/30" aria-labelledby="comparison-title">
+        <section className="section-pad bg-muted/30" aria-labelledby="comparison-title">
           <div className="site-shell">
             <Reveal>
               <p className="eyebrow">Platform Comparison</p>

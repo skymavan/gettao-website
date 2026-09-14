@@ -5,6 +5,7 @@ import { ClosingCta } from "@/components/closing-cta";
 import { ContactForm } from "@/components/contact-form";
 import { FaqSection } from "@/components/faq-section";
 import { Button } from "@/components/ui/button";
+import { Photo } from "@/components/photo";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/reveal";
@@ -194,18 +195,26 @@ export default function BankingPage() {
                 </Button>
               </div>
             </Reveal>
+            <Photo
+              name="banking"
+              ratio="21 / 9"
+              position="center 35%"
+              className="subpage-hero-photo"
+              sizes="(min-width: 1400px) 1400px, 100vw"
+              priority
+            />
           </div>
         </section>
 
         {/* Overview */}
-        <section className="section-pad border-y border-border bg-muted/30" aria-labelledby="overview-title">
+        <section className="section-pad bg-muted/30" aria-labelledby="overview-title">
           <div className="site-shell">
             <Reveal>
               <p className="eyebrow">Overview</p>
               <h2 id="overview-title" className="mb-6">
                 The Future of Banking Is Intelligent
               </h2>
-              <div className="mx-auto max-w-4xl space-y-4 text-muted-foreground">
+              <div className="max-w-3xl space-y-4 text-muted-foreground">
                 <p>
                   Modern banking requires more than digital tools — it requires intelligent systems that can
                   analyze data, automate repetitive work, and deliver actionable insights in real time.
@@ -243,7 +252,7 @@ export default function BankingPage() {
         </section>
 
         {/* Solutions */}
-        <section id="solutions" className="section-pad border-y border-border bg-muted/30" aria-labelledby="solutions-title">
+        <section id="solutions" className="section-pad bg-muted/30" aria-labelledby="solutions-title">
           <div className="site-shell">
             <Reveal>
               <p className="eyebrow">Solutions</p>
@@ -287,7 +296,7 @@ export default function BankingPage() {
         </section>
 
         {/* Business Impact */}
-        <section className="section-pad border-y border-border bg-muted/30" aria-labelledby="impact-title">
+        <section className="section-pad bg-muted/30" aria-labelledby="impact-title">
           <div className="site-shell">
             <Reveal>
               <p className="eyebrow">Business Impact</p>
@@ -339,7 +348,7 @@ export default function BankingPage() {
         </section>
 
         {/* Integrations */}
-        <section className="section-pad border-y border-border bg-muted/30" aria-labelledby="integrations-title">
+        <section className="section-pad bg-muted/30" aria-labelledby="integrations-title">
           <div className="site-shell">
             <Reveal>
               <p className="eyebrow">Integrations</p>

@@ -397,7 +397,6 @@
 }
 
 .access-section {
-  border-block: 1px solid hsl(var(--border));
   background: hsl(var(--surface));
 }
 
@@ -668,7 +667,6 @@
 
 /* Closing CTA */
 .closing-section {
-  border-bottom: 1px solid hsl(var(--border));
   background: hsl(var(--background));
 }
 
@@ -721,15 +719,14 @@
 
 /* Footer */
 .site-footer {
-  background: hsl(var(--background));
-  border-top: 1px solid hsl(var(--border));
-  padding-block: 3rem;
+  background: hsl(var(--surface));
+  padding-block: clamp(3.5rem, 6vw, 5rem) 2rem;
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: minmax(18rem, 1.2fr) minmax(12rem, 0.7fr) minmax(16rem, 0.9fr);
-  gap: 2rem;
+  grid-template-columns: minmax(16rem, 1.6fr) repeat(4, minmax(8rem, 1fr));
+  gap: clamp(2rem, 4vw, 3.5rem);
   align-items: start;
 }
 
@@ -794,8 +791,7 @@
 .footer-legal {
   grid-column: 1 / -1;
   padding-top: 1rem;
-  margin-top: 0.5rem;
-  border-top: 1px solid hsl(var(--border));
+  margin-top: 1.5rem;
   color: hsl(var(--muted-foreground));
   font-size: 0.82rem;
   text-align: center;
@@ -838,6 +834,124 @@
   html {
     scroll-behavior: smooth;
   }
+}
+
+/* Photography */
+.photo-frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: hsl(var(--muted));
+}
+
+.photo-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.subpage-hero-photo {
+  width: 100%;
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  box-shadow: 0 30px 60px -40px hsl(203 60% 20% / 0.45);
+}
+
+.contact-photo {
+  margin-top: 2.5rem;
+}
+
+/* Media split: content beside a supporting photo */
+.media-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.media-split-reverse {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
+  align-items: center;
+}
+
+.media-split-reverse .principle-list {
+  margin-top: 0;
+}
+
+.media-split-photo {
+  box-shadow: 0 30px 60px -44px hsl(203 60% 20% / 0.45);
+}
+
+.text-center .eyebrow {
+  justify-content: center;
+}
+
+/* Industry cards */
+.industry-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: hsl(var(--background));
+  box-shadow:
+    0 1px 2px hsl(0 0% 0% / 0.04),
+    0 18px 40px -28px hsl(203 60% 20% / 0.35);
+}
+
+.industry-card-photo {
+  border-radius: 0;
+}
+
+.industry-card-photo img {
+  transition: transform 0.9s var(--ease-out);
+}
+
+.industry-card:hover .industry-card-photo img {
+  transform: scale(1.03);
+}
+
+.industry-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.75rem;
+}
+
+.industry-card-body h3 {
+  margin-bottom: 0.75rem;
+  font-size: 1.4rem;
+}
+
+.industry-card-body p {
+  margin: 0 0 1.25rem;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.industry-card-body ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.industry-card-body li {
+  border-radius: 999px;
+  background: hsl(var(--signal-soft));
+  color: hsl(var(--primary));
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.industry-card-body .text-link {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  align-self: flex-start;
 }
 
 /* Subpage hero */
@@ -885,6 +999,20 @@
     grid-template-columns: 1fr 1.25fr;
   }
 
+  .media-split,
+  .media-split-reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .media-split-photo {
+    max-height: 28rem;
+    aspect-ratio: 16 / 10 !important;
+  }
+
+  .media-split-reverse .media-split-photo {
+    order: 2;
+  }
+
   .hero-inner {
     grid-template-columns: minmax(0, 1fr);
     padding-block: clamp(8rem, 14vh, 10rem) clamp(3rem, 6vh, 5rem);
@@ -912,13 +1040,10 @@
   }
 
   .footer-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .footer-brand-wrap,
-  .footer-nav,
-  .footer-meta,
-  .footer-socials,
   .footer-legal {
     grid-column: 1 / -1;
   }
@@ -953,6 +1078,11 @@
 }
 
 @media (max-width: 767px) {
+  .subpage-hero-photo {
+    aspect-ratio: 4 / 3 !important;
+    border-radius: var(--radius-lg);
+  }
+
   .hero-inner {
     padding-block: 7rem clamp(2rem, 4vh, 3rem);
   }
