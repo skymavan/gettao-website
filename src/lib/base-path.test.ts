@@ -55,4 +55,12 @@ describe("internalHref", () => {
       "/gettao/platform#capabilities",
     );
   });
+
+  it("prefixes home-page section links so they work from any subpage", () => {
+    expect(internalHref("/#faq", "")).toBe("/#faq");
+    expect(internalHref("/#faq", "/gettao")).toBe("/gettao/#faq");
+    expect(internalHref("/platform/#capabilities", "/gettao")).toBe(
+      "/gettao/platform/#capabilities",
+    );
+  });
 });

@@ -1,51 +1,47 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
-import { motion, useReducedMotion, type Variants } from "motion/react";
+import { motion, type Variants } from "motion/react";
+import { useRef } from "react";
 
-import { EASE_OUT, VIEWPORT_ONCE } from "@/lib/motion";
+import {
+  EASE_OUT,
+  HIDE_INSTANTLY,
+  REVEAL_DURATION,
+  STAGGER_BUDGET,
+  staggerParentFor,
+} from "@/lib/motion";
+import { useScrollReveal } from "@/lib/use-scroll-reveal";
 
-const STATEMENT =
-  "Transform financial operations with enterprise AI.".split(
-    " ",
-  );
+const STATEMENT = "Transform financial operations with enterprise AI.".split(" ");
 
-const parent: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.08 } },
-};
+const parent = staggerParentFor(STATEMENT.length);
 
 const word: Variants = {
-  hidden: { opacity: 0, y: "0.35em" },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: EASE_OUT } },
+  hidden: { opacity: 0, y: "0.35em", transition: HIDE_INSTANTLY },
+  visible: { opacity: 1, y: 0, transition: { duration: REVEAL_DURATION, ease: EASE_OUT } },
+};
+
+const link: Variants = {
+  hidden: { opacity: 0, y: 16, transition: HIDE_INSTANTLY },
+  visible: {
+    opacity: 1,
+    y: 0,
+    // Lands with the last word so the whole block settles in ~1s.
+    transition: { duration: REVEAL_DURATION, ease: EASE_OUT, delay: STAGGER_BUDGET },
+  },
 };
 
 export function ClosingCta({ accessUrl }: { accessUrl?: string }) {
-  const reduce = useReducedMotion();
   const url = accessUrl ?? "#contact";
-
-  if (reduce) {
-    return (
-      <section className="closing-section" aria-label="Closing call to action">
-        <div className="site-shell closing-inner">
-          <p>Transform financial operations with enterprise AI.</p>
-          <a href={url} className="closing-link">
-            Book a Demo <ArrowUpRight aria-hidden="true" />
-          </a>
-        </div>
-      </section>
-    );
-  }
+  const ref = useRef<HTMLDivElement>(null);
+  const phase = useScrollReveal(ref);
+  const target = phase === "hidden" ? "hidden" : "visible";
 
   return (
     <section className="closing-section" aria-label="Closing call to action">
-      <div className="site-shell closing-inner">
-        <motion.p
-          variants={parent}
-          initial="hidden"
-          whileInView="visible"
-          viewport={VIEWPORT_ONCE}
-        >
+      <div ref={ref} className="site-shell closing-inner">
+        <motion.p variants={parent} initial={false} animate={target}>
           <span className="sr-only">{STATEMENT.join(" ")}</span>
           <span aria-hidden="true">
             {STATEMENT.map((w, i) => (
@@ -60,10 +56,9 @@ export function ClosingCta({ accessUrl }: { accessUrl?: string }) {
         <motion.a
           href={url}
           className="closing-link"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={VIEWPORT_ONCE}
-          transition={{ duration: 0.85, ease: EASE_OUT, delay: 0.6 }}
+          variants={link}
+          initial={false}
+          animate={target}
         >
           Book a Demo <ArrowUpRight aria-hidden="true" />
         </motion.a>

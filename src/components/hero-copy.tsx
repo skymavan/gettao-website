@@ -1,130 +1,84 @@
 "use client";
 
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
-import { motion, useReducedMotion, type Variants } from "motion/react";
+import { animate } from "motion/react";
+import { useEffect, useRef } from "react";
 
 import { Button } from "@/components/ui/button";
 import { EASE_OUT } from "@/lib/motion";
 
-const HEADLINE_LEAD = ["Digital", "workers"];
-const HEADLINE_EMPHASIS = ["for", "financial", "operations."];
-
-const heroStagger: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.16, delayChildren: 0.08 } },
-};
-
-const heroChild: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.95, ease: EASE_OUT } },
-};
-
-const headlineParent: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { duration: 0.5, ease: EASE_OUT, staggerChildren: 0.1, delayChildren: 0.08 },
-  },
-};
-
-const headlineWord: Variants = {
-  hidden: { opacity: 0, y: "0.4em" },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE_OUT } },
-};
-
-function StaticHeadline() {
-  return (
-    <h1 id="hero-title" className="hero-title">
-      Digital workers for <em>financial operations.</em>
-    </h1>
-  );
-}
-
-function AnimatedHeadline() {
-  return (
-    <motion.h1
-      id="hero-title"
-      className="hero-title"
-      variants={headlineParent}
-    >
-      <span className="sr-only">Digital workers for financial operations.</span>
-      <span aria-hidden="true" style={{ display: "block" }}>
-        {HEADLINE_LEAD.map((word) => (
-          <span key={word} className="hero-word-wrap">
-            <motion.span className="hero-word" variants={headlineWord}>
-              {word}
-            </motion.span>
-          </span>
-        ))}
-        <em className="hero-emphasis">
-          {HEADLINE_EMPHASIS.map((word) => (
-            <span key={word} className="hero-word-wrap">
-              <motion.span className="hero-word" variants={headlineWord}>
-                {word}
-              </motion.span>
-            </span>
-          ))}
-        </em>
-      </span>
-    </motion.h1>
-  );
-}
-
 const EYEBROW = "DIGITAL WORKERS · FINANCIAL OPERATIONS · HUMAN CONTROL";
 const DESCRIPTION =
-  "Gettao automates document-heavy work across mortgage, banking, and insurance\u2014from intake and validation to compliance and follow-up\u2014with human review at every critical step.";
+  "Gettao automates document-heavy work across mortgage, banking, and insurance—from intake and validation to compliance and follow-up—with human review at every critical step.";
 
-function Actions({ accessUrl }: { accessUrl: string }) {
-  return (
-    <div className="hero-actions">
-      <Button
-        asChild
-        size="lg"
-        className="hero-primary-action rounded-full"
-      >
-        <a href={accessUrl}>
-          Book a Demo <ArrowUpRight aria-hidden="true" />
-        </a>
-      </Button>
-      <a href="#how-it-works" className="hero-secondary-action">
-        See how it works <ArrowDownRight aria-hidden="true" />
-      </a>
-    </div>
-  );
-}
+/** Subtle settle offset (px). Opacity is never touched: hero copy is LCP content. */
+const SETTLE_OFFSET = 10;
+const SETTLE_DURATION = 0.7;
 
 export function HeroCopy({ accessUrl }: { accessUrl?: string }) {
-  const reduce = useReducedMotion();
   const url = accessUrl ?? "#contact";
+  const eyebrowRef = useRef<HTMLParagraphElement>(null);
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const actionsRef = useRef<HTMLDivElement>(null);
 
-  if (reduce) {
-    return (
-      <div className="hero-copy">
-        <p className="eyebrow">{EYEBROW}</p>
-        <StaticHeadline />
-        <p className="hero-description">{DESCRIPTION}</p>
-        <Actions accessUrl={url} />
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (
+      typeof window.matchMedia !== "function" ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+
+    // DESIGN.md timing: headline/eyebrow 0ms, description 200ms, actions 400ms.
+    const sequence = [
+      [eyebrowRef.current, 0],
+      [descriptionRef.current, 0.2],
+      [actionsRef.current, 0.4],
+    ] as const;
+
+    const controls = sequence.flatMap(([element, delay]) => {
+      if (!element) return [];
+      // Offset everything in the same frame so later items don't jump mid-sequence.
+      element.style.transform = `translateY(${SETTLE_OFFSET}px)`;
+      return [
+        animate(
+          element,
+          { y: [SETTLE_OFFSET, 0] },
+          { duration: SETTLE_DURATION, delay, ease: EASE_OUT },
+        ),
+      ];
+    });
+
+    const elements = sequence.map(([element]) => element);
+    return () => {
+      controls.forEach((control) => control.stop());
+      elements.forEach((element) => {
+        if (element) element.style.transform = "";
+      });
+    };
+  }, []);
 
   return (
-    <motion.div
-      className="hero-copy"
-      variants={heroStagger}
-      initial="hidden"
-      animate="visible"
-    >
-      <motion.p className="eyebrow" variants={heroChild}>
+    <div className="hero-copy">
+      <p ref={eyebrowRef} className="eyebrow">
         {EYEBROW}
-      </motion.p>
-      <AnimatedHeadline />
-      <motion.p className="hero-description" variants={heroChild}>
+      </p>
+      <h1 id="hero-title" className="hero-title">
+        Digital workers for <em>financial operations.</em>
+      </h1>
+      <p ref={descriptionRef} className="hero-description">
         {DESCRIPTION}
-      </motion.p>
-      <motion.div variants={heroChild}>
-        <Actions accessUrl={url} />
-      </motion.div>
-    </motion.div>
+      </p>
+      <div ref={actionsRef} className="hero-actions">
+        <Button asChild size="lg" className="hero-primary-action rounded-full">
+          <a href={url}>
+            Book a Demo <ArrowUpRight aria-hidden="true" />
+          </a>
+        </Button>
+        <a href="#how-it-works" className="hero-secondary-action">
+          See how it works <ArrowDownRight aria-hidden="true" />
+        </a>
+      </div>
+    </div>
   );
 }

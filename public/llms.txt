@@ -4,14 +4,19 @@ Gettao is an enterprise AI platform purpose-built for financial services — mor
 
 ## Primary pages and sections
 
-- Website: https://gettao.ai/
-- Industries: https://gettao.ai/#industries
-- Platform: https://gettao.ai/#platform
-- How it works: https://gettao.ai/#how-it-works
-- Why Gettao: https://gettao.ai/#why-gettao
-- Resources: https://gettao.ai/#resources
-- Frequently asked questions: https://gettao.ai/#faq
-- Book a demo: https://gettao.ai/#contact
+- Website: https://www.gettao.ai/
+- Industries: https://www.gettao.ai/#industries
+- Platform overview: https://www.gettao.ai/#platform
+- Platform page: https://www.gettao.ai/platform/
+- Mortgage AI: https://www.gettao.ai/solutions/mortgage/
+- Banking AI: https://www.gettao.ai/solutions/banking/
+- Insurance AI: https://www.gettao.ai/solutions/insurance/
+- How it works: https://www.gettao.ai/#how-it-works
+- Why Gettao: https://www.gettao.ai/#why-gettao
+- Resources: https://www.gettao.ai/#resources
+- Frequently asked questions: https://www.gettao.ai/#faq
+- Book a demo: https://www.gettao.ai/#contact
+- Contact page: https://www.gettao.ai/contact/
 
 ## Industries
 

@@ -21,6 +21,6 @@ export default function robots(): MetadataRoute.Robots {
       ...citationBots.map((userAgent) => ({ userAgent, allow: "/" })),
     ],
     sitemap: `${siteConfig.canonicalUrl}sitemap.xml`,
-    host: siteConfig.canonicalUrl,
+    host: new URL(siteConfig.canonicalUrl).host,
   };
 }

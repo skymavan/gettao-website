@@ -54,7 +54,7 @@ export type NavigationItem = {
 export const siteConfig: SiteConfig = {
   name: "Gettao",
   tagline: "Enterprise AI for Financial Services",
-  canonicalUrl: "https://gettao.ai/",
+  canonicalUrl: "https://www.gettao.ai/",
   email: "hello@gettao.ai",
   socialLinks: [
     { label: "LinkedIn", href: "https://www.linkedin.com/company/gettao", icon: "linkedin" },
@@ -68,32 +68,32 @@ export const industryNavItems: ReadonlyArray<IndustryNavItem> = [
     id: "mortgage",
     label: "Mortgage AI",
     description: "Accelerate loan origination and automate underwriting.",
-    href: "/solutions/mortgage",
+    href: "/solutions/mortgage/",
     icon: "landmark",
   },
   {
     id: "banking",
     label: "Banking AI",
     description: "Transform banking operations with intelligent automation.",
-    href: "/solutions/banking",
+    href: "/solutions/banking/",
     icon: "building",
   },
   {
     id: "insurance",
     label: "Insurance AI",
     description: "Automate claims, underwriting, and customer service.",
-    href: "/solutions/insurance",
+    href: "/solutions/insurance/",
     icon: "shield",
   },
 ];
 
 export const navigation: ReadonlyArray<NavigationItem> = [
-  { label: "Industries", href: "#industries", children: "industries" },
-  { label: "Platform", href: "/platform" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Why Gettao", href: "#why-gettao" },
-  { label: "Resources", href: "#resources" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Industries", href: "/#industries", children: "industries" },
+  { label: "Platform", href: "/platform/" },
+  { label: "How It Works", href: "/#how-it-works" },
+  { label: "Why Gettao", href: "/#why-gettao" },
+  { label: "Resources", href: "/#resources" },
+  { label: "FAQ", href: "/#faq" },
 ] as const;
 
 export const hero = {
@@ -378,31 +378,20 @@ export const finalCta = {
 
 export const footerLinks = {
   solutions: [
-    { label: "Mortgage", href: "/solutions/mortgage" },
-    { label: "Banking", href: "/solutions/banking" },
-    { label: "Insurance", href: "/solutions/insurance" },
+    { label: "Mortgage", href: "/solutions/mortgage/" },
+    { label: "Banking", href: "/solutions/banking/" },
+    { label: "Insurance", href: "/solutions/insurance/" },
   ],
   platform: [
-    { label: "AI Platform", href: "/platform" },
-    { label: "AI Agents", href: "/platform#capabilities" },
-    { label: "Document Intelligence", href: "/platform#capabilities" },
-    { label: "Workflow Automation", href: "/platform#capabilities" },
-    { label: "Predictive Intelligence", href: "/platform#capabilities" },
-    { label: "Enterprise Search", href: "/platform#capabilities" },
-  ],
-  resources: [
-    { label: "Blog", href: "#" },
-    { label: "Case Studies", href: "#" },
-    { label: "Whitepapers", href: "#" },
-    { label: "Documentation", href: "#" },
-    { label: "FAQ", href: "#faq" },
+    { label: "AI Platform", href: "/platform/" },
+    { label: "Capabilities", href: "/platform/#capabilities" },
+    { label: "How It Works", href: "/#how-it-works" },
+    { label: "Security", href: "/#security" },
   ],
   company: [
-    { label: "About", href: "#" },
-    { label: "Careers", href: "#" },
-    { label: "Partners", href: "#" },
-    { label: "Contact", href: "#contact" },
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
+    { label: "Why Gettao", href: "/#why-gettao" },
+    { label: "Resources", href: "/#resources" },
+    { label: "FAQ", href: "/#faq" },
+    { label: "Contact", href: "/contact/" },
   ],
 };

@@ -4,17 +4,17 @@ import { ArrowUpRight } from "lucide-react";
 import { ClosingCta } from "@/components/closing-cta";
 import { ContactForm } from "@/components/contact-form";
 import { FaqSection } from "@/components/faq-section";
-import { Logo } from "@/components/logo";
+import { Button } from "@/components/ui/button";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/reveal";
-import { siteConfig, footerLinks } from "@/content/site";
-import { internalHref } from "@/lib/base-path";
+import { siteConfig } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Enterprise AI Platform for Financial Services | Gettao",
   description:
     "Discover the Gettao Enterprise AI Platform built for mortgage lenders, banks, and insurance providers. Automate workflows, accelerate decisions, and scale securely with AI.",
-  alternates: { canonical: `${siteConfig.canonicalUrl}platform` },
+  alternates: { canonical: `${siteConfig.canonicalUrl}platform/` },
   openGraph: {
     title: "Enterprise AI Platform for Financial Services | Gettao",
     description:
@@ -193,7 +193,7 @@ export default function PlatformPage() {
           <div className="site-shell text-center">
             <Reveal>
               <p className="eyebrow">Enterprise AI Platform</p>
-              <h1 id="platform-hero-title" className="hero-title mx-auto max-w-4xl">
+              <h1 id="platform-hero-title" className="subpage-title mx-auto">
                 One Intelligent Platform. Every Financial Workflow.
               </h1>
               <p className="mx-auto mt-6 max-w-3xl text-muted-foreground">
@@ -207,12 +207,16 @@ export default function PlatformPage() {
                 exceptional customer experiences.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
-                <a href="#contact" className="group/button inline-flex shrink-0 items-center justify-center rounded-full border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground hover:bg-primary/80 gap-1.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 h-12 px-5">
+                <Button asChild variant="accent" size="lg" className="h-12 px-6 text-base">
+                  <a href="#contact">
                   Book a Demo <ArrowUpRight aria-hidden="true" />
                 </a>
-                <a href="#capabilities" className="group/button inline-flex shrink-0 items-center justify-center rounded-full border bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 border-border bg-background hover:bg-muted hover:text-foreground gap-1.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 h-12 px-5">
+                </Button>
+                <Button asChild variant="outline" size="lg" className="h-12 px-6 text-base">
+                  <a href="#capabilities">
                   Explore Solutions
                 </a>
+                </Button>
               </div>
             </Reveal>
           </div>
@@ -259,7 +263,7 @@ export default function PlatformPage() {
               {whyPlatform.map((item) => (
                 <StaggerItem key={item.title}>
                   <article className="rounded-lg border border-border bg-background p-6">
-                    <h3 className="mb-3 text-lg font-bold text-primary">{item.title}</h3>
+                    <h3 className="mb-3 text-lg font-semibold text-primary">{item.title}</h3>
                     <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
                   </article>
                 </StaggerItem>
@@ -398,7 +402,7 @@ export default function PlatformPage() {
               {deploymentOptions.map((option) => (
                 <StaggerItem key={option.title}>
                   <article className="rounded-lg border border-border bg-background p-6">
-                    <h3 className="mb-3 text-lg font-bold text-primary">{option.title}</h3>
+                    <h3 className="mb-3 text-lg font-semibold text-primary">{option.title}</h3>
                     <p className="text-sm leading-relaxed text-muted-foreground">{option.description}</p>
                   </article>
                 </StaggerItem>
@@ -472,7 +476,7 @@ export default function PlatformPage() {
         </section>
 
         {/* FAQ */}
-        <section className="section-pad" aria-labelledby="platform-faq-title">
+        <section id="faq" className="section-pad" aria-labelledby="platform-faq-title">
           <div className="site-shell faq-grid">
             <Reveal>
               <div>
@@ -513,68 +517,7 @@ export default function PlatformPage() {
         <ClosingCta />
       </main>
 
-      <footer className="site-footer">
-        <Reveal className="site-shell footer-grid">
-          <div className="footer-brand-wrap">
-            <a href="#top" className="footer-brand" aria-label="Gettao Home">
-              <Logo />
-            </a>
-            <p>Enterprise AI for Financial Services</p>
-            <div className="footer-socials" aria-label="Social links">
-              {siteConfig.socialLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={link.label}
-                  title={link.label}
-                >
-                  {link.icon === "linkedin" ? (
-                    <LinkedInIcon />
-                  ) : link.icon === "github" ? (
-                    <GitHubIcon />
-                  ) : (
-                    <XIcon />
-                  )}
-                </a>
-              ))}
-            </div>
-          </div>
-          <nav aria-label="Solutions" className="footer-nav">
-            <p className="footer-heading">Solutions</p>
-            {footerLinks.solutions.map((link) => (
-              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
-            ))}
-          </nav>
-          <nav aria-label="Platform" className="footer-nav">
-            <p className="footer-heading">Platform</p>
-            {footerLinks.platform.map((link) => (
-              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
-            ))}
-          </nav>
-          <nav aria-label="Resources" className="footer-nav">
-            <p className="footer-heading">Resources</p>
-            {footerLinks.resources.map((link) => (
-              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
-            ))}
-          </nav>
-          <nav aria-label="Company" className="footer-nav">
-            <p className="footer-heading">Company</p>
-            {footerLinks.company.map((link) => (
-              <a key={link.label} href={internalHref(link.href)}>{link.label}</a>
-            ))}
-          </nav>
-          <div className="footer-meta">
-            <p className="footer-heading">Get in touch</p>
-            <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
-            <span>Enterprise AI for Financial Services</span>
-          </div>
-          <div className="footer-legal">
-            <span>&copy; 2026 Gettao. All rights reserved.</span>
-          </div>
-        </Reveal>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
@@ -589,7 +532,7 @@ function CapabilityBlock({ feature, index }: { feature: (typeof capabilities)[nu
         className={`flex flex-col gap-8 ${isReversed ? "md:flex-row-reverse" : "md:flex-row"} items-start rounded-xl border border-border bg-background p-8`}
       >
         <div className="flex-1">
-          <h3 className="mb-4 text-2xl font-bold">{feature.title}</h3>
+          <h3 className="mb-4 text-2xl font-semibold">{feature.title}</h3>
           <p className="mb-6 leading-relaxed text-muted-foreground">{feature.summary}</p>
         </div>
         <div className="flex-1">
@@ -638,35 +581,5 @@ function ListSection({ title, items }: { title: string; items: ReadonlyArray<str
   );
 }
 
-function LinkedInIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path
-        fill="currentColor"
-        d="M20.45 20.45h-3.56v-5.56c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.65H9.35V9h3.41v1.56h.05c.48-.9 1.66-1.85 3.42-1.85 3.66 0 4.33 2.41 4.33 5.54v6.2ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM3.56 20.45h3.56V9H3.56v11.45Z"
-      />
-    </svg>
-  );
-}
 
-function XIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path
-        fill="currentColor"
-        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644Z"
-      />
-    </svg>
-  );
-}
 
-function GitHubIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path
-        fill="currentColor"
-        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.339-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.31.678.921.678 1.856 0 1.34-.012 2.424-.012 2.752 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.523 2 12 2Z"
-      />
-    </svg>
-  );
-}

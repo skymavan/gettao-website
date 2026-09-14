@@ -10,7 +10,7 @@ describe("machine-readable content", () => {
     const llms = readFileSync(path.join(publicDir, "llms.txt"), "utf8");
 
     expect(llms).toContain("# Gettao");
-    expect(llms).toContain("https://gettao.ai/#industries");
+    expect(llms).toContain("https://www.gettao.ai/#industries");
     expect(llms).toContain("hello@gettao.ai");
   });
 });

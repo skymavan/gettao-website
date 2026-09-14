@@ -24,8 +24,9 @@ describe("SiteHeader", () => {
 
     const triggers = screen.getAllByRole("button", { name: "Industries" });
     expect(triggers.length).toBe(2);
-    expect(triggers[0]).toHaveAttribute("aria-haspopup", "true");
+    expect(triggers[0]).not.toHaveAttribute("aria-haspopup");
     expect(triggers[0]).toHaveAttribute("aria-expanded", "false");
+    expect(triggers[0]).toHaveAttribute("aria-controls");
   });
 
   it("opens an accessible mobile menu", async () => {
@@ -46,17 +47,47 @@ describe("SiteHeader", () => {
     const sheet = screen.getByRole("dialog", { name: "Site navigation" });
 
     const triggers = within(sheet).getAllByRole("button", { name: "Industries" });
-    const mobileTrigger = triggers.find((b) => !b.hasAttribute("aria-haspopup")) ?? triggers[1];
+    const mobileTrigger = triggers[triggers.length - 1];
     await user.click(mobileTrigger);
 
     expect(
       within(sheet).getByRole("link", { name: /Mortgage AI/ }),
-    ).toHaveAttribute("href", "/solutions/mortgage");
+    ).toHaveAttribute("href", "/solutions/mortgage/");
     expect(
       within(sheet).getByRole("link", { name: /Banking AI/ }),
-    ).toHaveAttribute("href", "/solutions/banking");
+    ).toHaveAttribute("href", "/solutions/banking/");
     expect(
       within(sheet).getByRole("link", { name: /Insurance AI/ }),
-    ).toHaveAttribute("href", "/solutions/insurance");
+    ).toHaveAttribute("href", "/solutions/insurance/");
+  });
+
+  it("points section links at the home page so they work from subpages", () => {
+    render(<SiteHeader />);
+
+    const primary = screen.getByRole("navigation", { name: "Primary" });
+    for (const [name, href] of [
+      ["Platform", "/platform/"],
+      ["How It Works", "/#how-it-works"],
+      ["Why Gettao", "/#why-gettao"],
+      ["Resources", "/#resources"],
+      ["FAQ", "/#faq"],
+    ] as const) {
+      expect(within(primary).getByRole("link", { name })).toHaveAttribute("href", href);
+    }
+  });
+
+  it("closes the desktop Industries panel with Escape and returns focus", async () => {
+    const user = userEvent.setup();
+    render(<SiteHeader />);
+
+    const trigger = screen.getAllByRole("button", { name: "Industries" })[0];
+    await user.click(trigger);
+    expect(trigger).toHaveAttribute("aria-expanded", "true");
+    const panel = document.getElementById(trigger.getAttribute("aria-controls") ?? "");
+    expect(panel).not.toBeNull();
+
+    await user.keyboard("{Escape}");
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+    expect(trigger).toHaveFocus();
   });
 });

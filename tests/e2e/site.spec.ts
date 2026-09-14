@@ -33,7 +33,7 @@ test("core narrative, anchors, FAQ, and layout remain usable", async ({ page }) 
 });
 
 test("uses the Gettao identity with light theme and logo images", async ({ page }) => {
-  await expect(page.locator("html")).toHaveAttribute("color-scheme", "light");
+  await expect(page.locator('meta[name="color-scheme"]')).toHaveAttribute("content", "light");
   const headerLogo = page.locator(".site-header img");
   await expect(headerLogo).toBeVisible();
   await expect(headerLogo).toHaveAttribute("src", /logo\.png/);
@@ -88,18 +88,19 @@ test("mobile navigation exposes every section", async ({ page }, testInfo) => {
 });
 
 test("form explains and opens an email draft flow", async ({ page }) => {
-  await page.getByLabel("Name").fill("Asha Rao");
-  await page.getByLabel("Work email").fill("asha@example.com");
-  await page.getByLabel("Company (optional)").fill("Northstar Labs");
-  await page.getByLabel("Project type").selectOption("ai-agents");
-  await page.getByLabel("Estimated budget").selectOption("10-25k");
-  await page
-    .getByLabel("What should the system help you do?")
+  const form = page.getByRole("form", { name: "Book a demo" });
+  await form.getByLabel("Name").fill("Asha Rao");
+  await form.getByLabel("Work email").fill("asha@example.com");
+  await form.getByLabel("Company (optional)").fill("Northstar Labs");
+  await form.getByLabel("Team size").selectOption("11-50");
+  await form.getByLabel("Industry").selectOption("mortgage");
+  await form
+    .getByLabel("Tell us about your needs")
     .fill("Automate document intake and validation for mortgage processing.");
   await expect(
-    page.getByText("This opens your email application with the project details filled in."),
+    form.getByText("Opens a prefilled email in your email app for you to review and send."),
   ).toBeVisible();
-  await expect(page.getByRole("button", { name: "Open email draft" })).toBeEnabled();
+  await expect(form.getByRole("button", { name: "Book a Demo" })).toBeEnabled();
 });
 
 test("reduced motion keeps the local static hero and removes continuous animation", async ({ page }) => {
